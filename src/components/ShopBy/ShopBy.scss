@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+
+.shop-by-category {
+  margin: 57px 0;
+
+  &__categories {
+    display: grid;
+    column-gap: 16px;
+    row-gap: 32px;
+
+    @include onTablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    margin: 0 0 24px;
+
+    @include onTablet {
+      font-size: 32px;
+      line-height: 41px;
+      letter-spacing: -.01em;
+    }
+  }
+}

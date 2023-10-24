@@ -1,0 +1,128 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/animations.scss';
+
+.BigSlider {
+  margin: 0 0 40px;
+  &__item {
+    display: block !important;
+    position: relative;
+    padding-top: 100%;
+    min-height: 100%;
+    outline: none;
+
+    @include onTablet {
+      padding-top: 38.5%;
+    }
+  }
+
+  &__skeleton {
+    @extend %skeleton;
+    outline: none;
+    padding-top: 106%;
+    position: relative;
+
+    @include onTablet {
+      padding-top: 35%;
+    }
+  }
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__image {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .slick {
+    &-slider {
+      display: grid !important;
+      grid-template-rows: repeat(2, auto);
+      grid-template-columns: auto;
+      grid-column-gap: 16px;
+      grid-row-gap: 6px;
+      height: 100%;
+  
+      @include onTablet {
+        grid-template-columns: repeat(12, 1fr);
+      }
+  
+      @include onLaptop {
+        grid-template-columns: repeat(24, 1fr);
+      }
+    }
+  
+    &-list {
+      grid-row: 1 / 2;
+      grid-column: 2 / -2;
+    }
+  
+  
+    &-arrow {
+      @extend %slider-arrow;
+
+      &:hover {
+        background-color: var(--icons-color);
+      }
+    }
+  
+    &-next {
+      grid-row-end: 2;
+      grid-column: -2 / -1;
+      order: 2;
+  
+      &::before {
+        content: "";
+        display: none;
+      }
+    }
+  
+    &-prev {
+      grid-row-end: 2;
+      grid-column: 1 / 2;
+      order: 1;
+  
+      &::before {
+        content: "";
+        display: none;
+      }
+    }
+  }
+  
+  .dot {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    grid-row: -1 / -2;
+    grid-column: 1 / -1;
+    padding: 0;
+  
+    & .slick-active button {
+      background-color: var(--white-color);
+    }
+  
+    & li {
+      list-style: none;
+    }
+  
+    & button {
+      outline: 0;
+      min-width: 14px;
+      min-height: 4px;
+      background-color: var(--elements-color);
+      font-size: 0;
+    }
+  }
+}

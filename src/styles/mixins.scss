@@ -1,0 +1,40 @@
+@mixin onLaptop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin onDesktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin onTablet {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+%slider-arrow {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: var(--surface2-color);
+  left: 0;
+  right: 0;
+  transition: background-color 0.3s;
+}

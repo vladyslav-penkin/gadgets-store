@@ -1,0 +1,59 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.nav {
+  display: none;
+  margin: 0 0 0 16px;
+
+  @include onTablet {
+    display: block;
+  }
+
+  @include onLaptop {
+    margin: 0 0 0 64px;
+  }
+
+  &__panel {
+    display: flex;
+    gap: 32px;
+
+    @include onLaptop {
+      gap: 64px;
+    }
+  }
+
+  &__item {
+    list-style: none;
+  }
+
+  &__link {
+    position: relative;
+    padding: 15px 0;
+    color: var(--secondary-color);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 11px;
+
+    @include onLaptop {
+      padding: 24px 0;
+    }
+
+    &:hover {
+      color: var(--white-color);
+    }
+
+    &--active {
+      color: var(--white-color);
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        min-width: 100%;
+        height: 4px;
+        background-color: var(--white-color);
+        transition: 0.3s ease;
+      }
+    }
+  }
+};

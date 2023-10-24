@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.HomePage {
+  max-width: 1200px;
+  margin: 0 auto;
+  &__title {
+    margin: 0 0 24px;
+
+    @include onTablet {
+      margin: 0 0 32px;
+    }
+    @include onLaptop {
+      margin: 0 0 56px;
+    }
+  }
+}

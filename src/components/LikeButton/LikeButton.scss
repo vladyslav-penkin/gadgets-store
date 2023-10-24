@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.card__like-button {
+  @extend %flex-center;
+  background-color: var(--surface2-color);
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid var(--border-color);
+  transition: 0.3s ease;
+
+  &--pressed {
+    background-color: var(--surface1-color);
+  }
+}

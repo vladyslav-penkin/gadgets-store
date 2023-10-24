@@ -1,0 +1,41 @@
+@import './mixins.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Mont', sans-serif;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--white-color);
+  letter-spacing: -.01em;
+  line-height: 41px;
+
+  @include onTablet {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url(../fonts/Mont-Bold.ttf);
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url(../fonts/Mont-Regular.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url(../fonts/Mont-SemiBold.ttf);
+  font-weight: 700;
+}

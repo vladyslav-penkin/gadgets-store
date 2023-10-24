@@ -1,0 +1,46 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+
+.backToTop__button {
+  @extend %flex-center;
+  margin: 0 0 32px;
+
+  @include onTablet {
+    margin: 0 24px 0;
+  }
+
+  &-link {
+    @extend %flex-center;
+    gap: 16px;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 15px;
+    cursor: pointer;
+    color: var(--secondary-color);
+
+    &:hover {
+      color: var(--white-color);
+
+      & .backToTop__button-image {
+        background-color: var(--icons-color);
+      }
+    }
+  }
+
+  &-image {
+    background: url(../../assets/icons/arrowUpDark.svg);
+    width: 32px;
+    height: 32px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--surface2-color);
+
+    &--light {
+      background: url(../../assets/icons/arrowUpLight.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: var(--surface2-color);
+    }
+  }
+}

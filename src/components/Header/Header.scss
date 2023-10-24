@@ -1,0 +1,96 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.header {
+  position: fixed;
+  @extend %flex-between;
+  min-width: 100%;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--elements-color);
+  transition: 0.3s;
+  z-index: 200;
+
+  &__left-side  {
+    @extend %flex-between;
+    flex-basis: 450px;
+    align-items: center;
+  }
+
+  &__right-side {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__case {
+    position: relative;
+    display: none;
+    min-width: 48px;
+    border-left: 1px solid var(--elements-color);
+    transition: 0.3s;
+    min-height: $header-size;
+
+    @include onLaptop {
+      min-width: 64px;
+      min-height: 66px;
+    }
+
+    @include onTablet {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &:hover {
+      background-color: var(--elements-color);
+    }
+
+    &--active {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0px;
+        min-width: 100%;
+        min-height: 2px;
+        background-color: var(--white-color);
+      }
+    }
+
+    &-icon {
+      max-width: $icon-size;
+      max-height: $icon-size;
+  
+      &--button {
+        max-width: $theme-icon-size;
+        max-height: $theme-icon-size;
+      }
+    }
+
+    &--button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--bg-color);
+    }
+
+    &-position {
+      position: relative;
+      max-width: $icon-size;
+      max-height: $icon-size;
+    }
+
+    &-count {
+      position: absolute;
+      background-color: var(--red-color);
+      border: 1px solid var(--bg-color);
+      font-size: 9px;
+      border-radius: 50%;
+      min-width: 14px;
+      min-height: 14px;
+      color: #fff;
+      text-align: center;
+      bottom: 5px;
+      left: 7.5px;
+    }
+  }
+};

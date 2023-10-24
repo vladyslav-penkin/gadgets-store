@@ -1,0 +1,15 @@
+@keyframes pulse {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.25;
+  }
+}
+
+%skeleton {
+  background-color: var(--mockup-color);
+  border-radius: 5px;
+  animation: pulse 1s ease-in-out infinite alternate;
+}

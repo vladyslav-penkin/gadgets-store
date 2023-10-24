@@ -1,0 +1,17 @@
+@import './styles/variables.scss';
+@import './styles/reset.scss';
+@import './styles/normalize.scss';
+
+.main {
+  position: relative;
+  background-color: var(--bg-color);
+  padding: calc($header-size + 40px) 16px 360px 16px;
+  transition: 0.3s ease;
+
+  @include onTablet {
+    padding: calc($header-size + 54px) 24px 164px 24px;
+  }
+  @include onLaptop {
+    padding: calc($header-laptop-size + 54px) 32px 180px 32px;
+  }
+}

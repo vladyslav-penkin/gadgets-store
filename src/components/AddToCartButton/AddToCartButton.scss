@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.card-button {
+  @extend %flex-center;
+  flex-grow: 1;
+  min-height: 40px;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: var(--accent-color);
+  color: var(--cart-text);
+  border: 1px solid var(--border-color);
+  transition: 0.3s;
+
+  &--active {
+    background-color: var(--surface2-color);
+    color: var(--cart-text-active);
+  }
+}
