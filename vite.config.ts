@@ -17,5 +17,6 @@ export default defineConfig({
       '@contexts': path.resolve(__dirname, './src/contexts'),
     },
   },
+  base: 'https://Vlados3611.github.io/gadgets-store/',
   plugins: [react()],
 });

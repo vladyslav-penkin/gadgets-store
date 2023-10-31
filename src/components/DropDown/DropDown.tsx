@@ -8,7 +8,7 @@ import {
 import './DropDown.scss';
 import classNames from 'classnames';
 import { SortBy } from '@/types/SortBy';
-import { DropDownItem } from '@components/DropDown/DropDownItem/DropDonwItem';
+import { DropDownItem } from '@/components/DropDown/DropDownItem/DropDownItem';
 import { DropDownButton } from '@components/DropDown/DropDownButton/DropDownButton';
 
 type Props = {
