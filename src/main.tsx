@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from '@contexts/ThemeContext.tsx';
 import {
   LocaleStorageProvider,
@@ -8,11 +8,11 @@ import App from './App.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement);
 root.render(
-  <BrowserRouter>
+  <Router>
     <LocaleStorageProvider>
       <ThemeProvider>
         <App />
       </ThemeProvider>
     </LocaleStorageProvider>
-  </BrowserRouter>
+  </Router>
 );
