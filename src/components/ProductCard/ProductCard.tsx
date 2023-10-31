@@ -4,7 +4,7 @@ import {
   useCallback,
   useMemo,
 } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLocaleStorageContext } from '@hooks/useLocaleStorageContext';
 import { AddToCartButton } from '@components/AddToCartButton/AddToCartButton';
 import { LikeButton } from '@components/LikeButton/LikeButton';
@@ -37,8 +37,7 @@ export const ProductCard: FC<Props> = memo(
       isIncludesInCart,
       isIncludesInFavorites,
     } = useLocaleStorageContext();
-  
-    const { pathname } = useLocation();
+
     const inces = screen.split(' ')[0];
   
     const isAddedToCart = useMemo(() => {
