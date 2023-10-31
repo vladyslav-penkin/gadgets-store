@@ -62,7 +62,11 @@ export const ProductPage: FC<Props> = ({
       <LinkLine titles={linkLine} />
       <BackToButton to={`/${productType}`} />
       <h1 className="product__name">
-        {isLoading ? 'Loading...' : product?.name}
+        {isError ? (
+          isLoading ? 'Loading...' : product?.name
+        ) : (
+          'Something went wrong'
+        )}
       </h1>
     </Container>
   );
