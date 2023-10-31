@@ -2,8 +2,6 @@
 @import '../../styles/mixins.scss';
 
 .HomePage {
-  max-width: 1200px;
-  margin: 0 auto;
   &__title {
     margin: 0 0 24px;
 
@@ -12,6 +10,17 @@
     }
     @include onLaptop {
       margin: 0 0 56px;
+    }
+  }
+
+  &__big-slider {
+    max-width: 1200px;
+    @include onTablet {
+      padding: 0 24px;
+    }
+    @include onLaptop {
+      margin: 0 auto;
+      padding: 0 32px;
     }
   }
 }

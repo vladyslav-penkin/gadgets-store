@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.product {
+  &__name {
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 140%;
+
+    @include onTablet {
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+    }
+  }
+}

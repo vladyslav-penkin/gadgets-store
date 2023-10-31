@@ -2,12 +2,14 @@ import {
   FC,
   useState,
   useEffect,
+  useCallback,
 } from 'react';
 import { BigSlider } from '@components/BigSlider/BigSlider';
 import { Product } from '@/types/Product';
 import { getNew, getHot } from '@api/requests';
-import { HomeSlider } from '@/components/Slider/Slider';
-import { ShopBy } from '@/components/ShopBy/ShopBy';
+import { HomeSlider } from '@components/Slider/Slider';
+import { ShopBy } from '@components/ShopBy/ShopBy';
+import { Container } from '@components/Container/Container';
 
 export const HomePage: FC = () => {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
@@ -15,7 +17,7 @@ export const HomePage: FC = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isError, setError] = useState<boolean>(false);
 
-  const getProducts  = async () => {
+  const getProducts = useCallback(async () => {
     try {
       setLoading(true);
       setError(false);
@@ -32,31 +34,37 @@ export const HomePage: FC = () => {
     } finally {
       setLoading(false)
     }
-  };
+  }, []);
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [getProducts]);
 
   return (
     <article className="HomePage">
-      <h1 className="HomePage__title">
-        Welcome to Nice Gadgets store!
-      </h1>
-      <BigSlider />
-      <HomeSlider
-        title="Brand new models"
-        products={newProducts}
-        isLoading={isLoading}
-        isError={isError}
-      />
-      <ShopBy />
-      <HomeSlider
-        title="Hot prices"
-        products={hotProducts}
-        isLoading={isLoading}
-        isError={isError}
-      />
+      <Container>
+        <h1 className="HomePage__title">
+          Welcome to Nice Gadgets store!
+        </h1>
+      </Container>
+      <section className="HomePage__big-slider">
+        <BigSlider />
+      </section>
+      <Container>
+        <HomeSlider
+          title="Brand new models"
+          products={newProducts}
+          isLoading={isLoading}
+          isError={isError}
+        />
+        <ShopBy />
+        <HomeSlider
+          title="Hot prices"
+          products={hotProducts}
+          isLoading={isLoading}
+          isError={isError}
+        />
+      </Container>
     </article>
   );
 }

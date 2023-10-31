@@ -1,0 +1,28 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.pagination {
+  &__bullets {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0 10px;
+  }
+
+  &__bullet {
+    min-width: 2rem;
+    min-height: 2rem;
+    background-color: var(--mockup-color);
+    border: none;
+    color: var(--pagination-text);
+    font-family: inherit;
+    transition: 0.3s ease;
+
+    &:hover {
+      background-color: var(--surface2-color);
+    }
+
+    &--active {
+      background-color: var(--accent-color);
+    }
+  }
+}

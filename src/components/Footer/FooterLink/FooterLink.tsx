@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 type Props = {
   href: string;
   content: string;
 };
 
-export const FooterLink: FC<Props> = ({
+export const FooterLink: FC<Props> = memo(({
   href,
   content
 }) => {
@@ -19,4 +19,4 @@ export const FooterLink: FC<Props> = ({
       </a>
     </li>
   )
-};
+});

@@ -2,7 +2,8 @@
 @import '../../styles/mixins.scss';
 
 .header {
-  position: fixed;
+  position: sticky;
+  top: 0;
   @extend %flex-between;
   min-width: 100%;
   background-color: var(--bg-color);

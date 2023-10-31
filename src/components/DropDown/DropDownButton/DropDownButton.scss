@@ -1,0 +1,17 @@
+.dropdown {
+  &__button {
+    display: flex;
+    padding: 0 12px;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white-color);
+    line-height: 21px;
+  }
+}

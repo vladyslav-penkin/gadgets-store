@@ -21,6 +21,8 @@ import arrowLeftDarkIcon from '@assets/icons/arrowLeftDark.svg';
 import arrowLeftLightIcon from '@assets/icons/arrowLeftLight.svg';
 import arrowUpDarkIcon from '@assets/icons/arrowUpDark.svg';
 import arrowUpLightIcon from '@assets/icons/arrowUpLight.svg';
+import homeDarkIcon from '@assets/icons/homeDark.svg';
+import homeLightIcon from '@assets/icons/homeLight.svg';
 
 type Theme = 'dark' | 'light';
 type ThemeProvider = {
@@ -34,6 +36,7 @@ type ThemeProvider = {
     arrowRightIcon: string;
     arrowLeftIcon: string;
     arrowUpIcon: string;
+    homeIcon: string;
   };
 };
 
@@ -48,6 +51,7 @@ export const ThemeContext = createContext<ThemeProvider>({
     arrowRightIcon: arrowRightDarkIcon,
     arrowLeftIcon: arrowLeftDarkIcon,
     arrowUpIcon: arrowUpDarkIcon,
+    homeIcon: homeDarkIcon,
   },
 });
 
@@ -85,7 +89,10 @@ export const ThemeProvider: FC<Props> = ({
         : arrowLeftLightIcon,
       arrowUpIcon: isDarkTheme
         ? arrowUpDarkIcon
-        : arrowUpLightIcon
+        : arrowUpLightIcon,
+      homeIcon: isDarkTheme
+        ? homeDarkIcon
+        : homeLightIcon
     };
   }, [isDarkTheme]);
 

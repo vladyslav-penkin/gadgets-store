@@ -2,19 +2,18 @@ import axios from 'axios';
 import { ProductType } from '../types/ProductType';
 import { SortBy } from '../types/SortBy';
 import { Product } from '@/types/Product';
-import { Phone } from '@/types/Phone';
 
 export const BASE_URL = 'https://nice-gadgets-api-n5r6.onrender.com';
 
-const get = async <T>(path: string): Promise<T> => {
+export const get = async <T>(path: string): Promise<T> => {
   const { data } = await axios.get<T>(path);
 
   return data;
 };
 
-type RequestParamsResult = {
+export type RequestParamsResult = {
   pages: number;
-  products: Phone[];
+  products: Product[];
   models: number;
 };
 
@@ -23,8 +22,6 @@ export const getProducts = async(
   page?: number,
   productType?: ProductType[],
   sortBy?: SortBy,
-  priceMin?: number,
-  priceMax?: number,
   query?: string,
 ): Promise<RequestParamsResult> => {
   const queryParams = [];
@@ -32,8 +29,6 @@ export const getProducts = async(
   if (perPage) queryParams.push(`perPage=${perPage}`);
   if (page) queryParams.push(`page=${page}`);
   if (sortBy) queryParams.push(`sortBy=${sortBy}`);
-  if (priceMin) queryParams.push(`priceMin=${priceMin}`);
-  if (priceMax) queryParams.push(`priceMax=${priceMax}`);
   if (query) queryParams.push(`query=${query}`);
 
   if (productType) {

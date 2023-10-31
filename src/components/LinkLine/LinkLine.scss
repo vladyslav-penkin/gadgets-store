@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.link-line {
+  display: flex;
+  align-items: center;
+  margin: 0 0 24px;
+  gap: 14px;
+
+  @include onTablet {
+    margin: 0 0 40px; 
+  }
+
+  &__arrow {
+    max-width: 14px;
+    max-height: 14px;
+  }
+  
+  &__link {
+    @extend %flex-center;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 12px;
+    text-decoration: none;
+    color: var(--white-color);
+
+    &--active {
+      color: var(--secondary-color);
+    }
+  }
+}

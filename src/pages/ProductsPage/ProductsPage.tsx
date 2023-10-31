@@ -1,10 +1,198 @@
-import { FC } from 'react';
-import { ProductType } from '../../types/ProductType';
+import {
+  FC,
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+} from 'react';
+import { useSearchParams } from 'react-router-dom';
+import './ProductsPage.scss';
+import { ProductType } from '@/types/ProductType';
+import { SortBy } from '@/types/SortBy';
+import { LinkLine } from '@components/LinkLine/LinkLine';
+import { Container } from '@components/Container/Container';
+import { getProducts, RequestParamsResult } from '@api/requests';
+import { DropDown } from '@components/DropDown/DropDown';
+import { updateSearchParams } from '@utils/searchHelper';
+import { ProductsList } from '@components/ProductsList/ProductsList';
+import { Search } from '@components/Search/Search';
+import { Pagination } from '@components/Pagination/Pagination';
 
 type Props = {
   productType: ProductType;
 };
 
-export const ProductsPage: FC<Props> = () => {
-  return (<h1>Products page</h1>);
+export const ProductsPage: FC<Props> = ({
+  productType
+}) => {
+  const [productInfo, setProductInfo] = useState<RequestParamsResult>({
+    pages: 1,
+    products: [],
+    models: 0,
+  });
+  const isHasProducts = productInfo.products.length > 0;
+  const [quantityPages, setQuantityPages] = useState<number>(0);
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isError, setError] = useState<boolean>(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sort = searchParams.get('sort') || SortBy.NEW;
+  const perPage = searchParams.get('perPage') || '8';
+  const page = searchParams.get('page') || '1';
+  const query = searchParams.get('query') || '';
+  const sorts = [SortBy.NAME, SortBy.NEW, SortBy.OLD, SortBy.LOW, SortBy.HIGHT];
+  const arrayOfItems = ['8', '16', '32', '64'];
+
+  const name = useMemo(() => {
+    switch (productType) {
+      case ProductType.PHONES:
+        return 'Mobile phones'
+      case ProductType.TABLETS:
+        return 'Tablets'
+      case ProductType.ACCESSORIES:
+        return 'Accessories';
+      default:
+        return '';
+    }
+  }, [productType]);
+
+  const onSortChange = useCallback((
+    sort: string,
+  ) => {
+    updateSearchParams(
+      searchParams,
+      setSearchParams,
+      { sort },
+    );
+  }, [searchParams, setSearchParams]);
+
+  const onPerPageChange = useCallback((
+    perPage: string,
+  ) => {
+    updateSearchParams(
+      searchParams,
+      setSearchParams,
+      { perPage },
+    );
+  }, [searchParams, setSearchParams]);
+
+  const debounce = useCallback((
+    callback: (query: string) => void,
+    delay: number,
+    ) => {
+      let timerId: NodeJS.Timeout;
+
+      return (args: string) => {
+        clearInterval(timerId);
+        timerId = setTimeout(callback, delay, args);
+      };
+    }, []);
+
+  const onQueryChange = debounce((
+    query: string,
+  ) => {
+    updateSearchParams(
+      searchParams,
+      setSearchParams,
+      { query: query.trim().toLowerCase() || null }
+    )
+  }, 1000);
+
+  const getDataFromServer = async () => {
+    setLoading(true);
+    setError(false);
+    try {
+      setProductInfo(
+        await getProducts(
+          +perPage,
+          +page,
+          [productType],
+          sorts.find((by: SortBy) => by === sort) || SortBy.NEW,
+          query
+        )
+      )
+      setQuantityPages(
+        (await getProducts(
+          +perPage
+        )).pages
+      )
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+      scrollTo(0, 0);
+    }
+  }
+
+  if (!query) {
+    searchParams.delete('query');
+  }
+
+  useEffect(() => {
+    getDataFromServer();
+  }, [searchParams, query, perPage, productType]);
+
+  const linkLine = useMemo(() => {
+    return [
+      {
+        title: productType,
+        link: `/${productType}`,
+      }
+    ]
+  }, [productType]);
+
+  return (
+    <article className="productsPage">
+      <Container>
+        <LinkLine titles={linkLine} />
+        <h1 className="productsPage__title">{name}</h1>
+
+        <p className="productsPage__models-count">
+          {`${productInfo?.models || 0} models`}
+        </p>
+        
+        <div className="productsPage__actions">
+          <Search
+            searchQuery={query}
+            onChange={onQueryChange}
+          />
+          <section
+            className="productsPage__dropDown"
+          >
+            <div className="productsPage__dropDown-container">
+              <p className="productsPage__dropDown-title">
+                Sort By
+              </p>
+              <DropDown
+                variables={sorts}
+                searchParam={sort}
+                onChange={onSortChange}
+                defaultValue={1}
+              />
+            </div>
+            <div className="productsPage__dropDown-container">
+              <p className="productsPage__dropDown-title">
+                Items on page
+              </p>
+              <DropDown
+                variables={arrayOfItems}
+                searchParam={perPage}
+                onChange={onPerPageChange}
+                defaultValue={0}
+              />
+            </div>
+          </section>
+        </div>
+
+        {isError ? (
+          <h1>Something went wrong 😔</h1>
+        ) : (
+          <ProductsList
+            products={productInfo?.products}
+            isLoading={isLoading}
+          />
+        )}
+        {isHasProducts && <Pagination quantity={quantityPages} />}
+      </Container>
+    </article>
+  );
 };

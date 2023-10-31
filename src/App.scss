@@ -4,14 +4,17 @@
 
 .main {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background-color: var(--bg-color);
-  padding: calc($header-size + 40px) 16px 360px 16px;
+  min-height: 100vh;
+  padding: 40px 0 360px 0;
   transition: 0.3s ease;
 
   @include onTablet {
-    padding: calc($header-size + 54px) 24px 164px 24px;
+    padding: 54px 0 164px 0;
   }
   @include onLaptop {
-    padding: calc($header-laptop-size + 54px) 32px 180px 32px;
+    padding: 54px 0 180px 0;
   }
 }

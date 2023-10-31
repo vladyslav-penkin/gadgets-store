@@ -1,0 +1,16 @@
+.dropdown {
+  &__content {
+    &-item {
+      display: flex;
+      align-items: center;
+      color: var(--secondary-color);
+      padding-left: 12px;
+      min-height: 40px;
+  
+      &:hover {
+        background-color: var(--surface2-color);
+        cursor: pointer;
+      }
+    }
+  }
+}

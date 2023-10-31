@@ -5,16 +5,13 @@ import {
 } from 'react';
 import './ShopBy.scss';
 import { CategoryCard } from '@components/CategoryCard/CategoryCard'; 
-import { Phone } from '@/types/Phone';
-import { BASE_URL, getProducts } from '@/api/requests';
+import {
+  BASE_URL,
+  getProducts,
+  RequestParamsResult,
+} from '@api/requests';
 import { ProductType } from '@/types/ProductType';
 import { CategoryCardSkeletons } from '../CategoryCardSkeletons/CategoryCardSkeletons';
-
-type RequestParamsResult = {
-  pages: number;
-  products: Phone[];
-  models: number;
-};
 
 export const ShopBy: FC = () => {
   const [phone, setPhone] = useState<RequestParamsResult>();

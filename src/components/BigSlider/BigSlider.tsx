@@ -1,5 +1,6 @@
 import {
   FC,
+  memo,
   useState,
   useEffect,
 } from 'react';
@@ -13,7 +14,7 @@ import { BASE_URL, Banner, getBanners } from '@api/requests';
 import { Loader } from '@components/Loader/Loader';
 
 
-export const BigSlider: FC = () => {
+export const BigSlider: FC = memo(() => {
   const [banners, setBanners] = useState<Banner[]>([]);
   const isMobile = useResize();
 
@@ -99,4 +100,4 @@ export const BigSlider: FC = () => {
         )}
     </div>
   );
-};
+});

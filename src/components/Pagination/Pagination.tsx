@@ -1,0 +1,87 @@
+import { 
+  FC,
+  useMemo,
+  useCallback,
+} from 'react';
+import { useSearchParams } from 'react-router-dom';
+import './Pagination.scss';
+import { updateSearchParams } from '@utils/searchHelper';
+import { PaginationButton } from '@components/Pagination/PaginationButton/PaginationButton';
+import { PaginationBullets } from '@components/Pagination/PaginationBullets/PaginationBullets';
+import { PaginationButtonType } from '@/types/PaginationButtonType';
+
+type Props = {
+  quantity: number;
+};
+
+export const Pagination: FC<Props> = ({
+  quantity
+}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get('page') || '1');
+
+  const onPageChange = useCallback((page: string) => {
+    updateSearchParams(
+      searchParams,
+      setSearchParams,
+      { page }
+    )
+  }, [searchParams, setSearchParams]);
+
+  const getBulletTitles = useCallback((quantity: number) => {
+    const visibleBullets = [];
+
+    for (let i = 0; i < quantity; i++) {
+      visibleBullets.push(i + 1);
+    }
+
+    return visibleBullets;
+  }, []);
+ 
+  const getVisibleBullets = useCallback((
+    currentPage: number, 
+    allVisibleBullets: number[],
+  ) => {
+    const visibleBullets = [...allVisibleBullets];
+
+    if (currentPage <= 3) {
+      return visibleBullets.splice(0, 4);
+    }
+
+    if (currentPage > visibleBullets[visibleBullets.length - 4]) {
+      return visibleBullets.slice(-4);
+    }
+
+    return visibleBullets.slice(currentPage - 2, currentPage + 2);
+  }, []);
+
+  const allVisibleBullets = useMemo(() => {
+    return getBulletTitles(quantity);
+  }, [getBulletTitles, quantity]);
+
+  const visibleBullets = useMemo(() => {
+    return getVisibleBullets(page, allVisibleBullets);
+  }, [allVisibleBullets, getVisibleBullets, page]);
+
+  return (
+    <article className="pagination">
+      <PaginationButton
+        totalPages={quantity}
+        type={PaginationButtonType.Previous}
+        currentPage={page}
+        onClick={() => onPageChange(String(page - 1))}
+      />
+      <PaginationBullets
+        visibleBullets={visibleBullets}
+        currentPage={page}
+        onClick={(bullet: number) => onPageChange(String(bullet))}
+      />
+      <PaginationButton
+        totalPages={quantity}
+        type={PaginationButtonType.Next}
+        currentPage={page}
+        onClick={() => onPageChange(String(page + 1))}
+      />
+    </article>
+  );
+};
