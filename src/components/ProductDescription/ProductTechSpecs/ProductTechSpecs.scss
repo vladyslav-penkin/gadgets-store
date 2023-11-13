@@ -1,0 +1,19 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.productTechSpecs {
+  display: flex;
+  flex-direction: column;
+  &__property {
+    display: flex;
+    justify-content: space-between;
+    font-size: .9rem;
+    color: var(--secondary-color);
+    
+    &-value {
+      padding-left: 2rem;
+      color: var(--white-color);
+      text-align: right;
+    }
+  }
+}

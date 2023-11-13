@@ -13,4 +13,16 @@
       margin-bottom: 2.5rem;
     }
   }
+
+  &__productDescription {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 4rem;
+
+    @include onTablet {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+  }
 }

@@ -1,0 +1,21 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+
+.productCapacity {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--secondary-color);
+
+  @include onTablet {
+    max-width: 20rem;
+  }
+  &__header {
+    margin-bottom: 8px;
+    &-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--secondary-color);
+    }
+  }
+}

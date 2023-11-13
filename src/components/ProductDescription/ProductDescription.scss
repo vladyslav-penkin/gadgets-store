@@ -1,0 +1,14 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.productDescription {
+  width: 100%;
+  margin: 2rem 0 0;
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--secondary-color);
+  }
+}

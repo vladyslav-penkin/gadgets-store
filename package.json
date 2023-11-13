@@ -24,7 +24,8 @@
     "react-router-dom": "^6.16.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "swiper": "^11.0.3"
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.8",

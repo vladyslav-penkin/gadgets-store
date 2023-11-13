@@ -1,0 +1,16 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.productAbout {
+  &__header {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0 0 1rem;
+    color: var(--white-color);
+  }
+  &__title {
+    margin: 0 0 2rem;
+    font-size: .85rem;
+    color: var(--secondary-color);
+  }
+}

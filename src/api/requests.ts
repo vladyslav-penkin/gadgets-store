@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { ProductType } from '../types/ProductType';
-import { SortBy } from '../types/SortBy';
+import { SortBy } from '@/types/SortBy';
 import { Product } from '@/types/Product';
+import { Phone } from '@/types/Phone';
 
 export const BASE_URL = 'https://nice-gadgets-api-n5r6.onrender.com';
 
@@ -63,7 +64,7 @@ export const getHot = (limit?: number): Promise<Product[]> => {
   );
 };
 
-export const getDetailedInfo = (id: string): Promise<Product> => {
+export const getDetailedInfo = (id: string): Promise<Phone> => {
   // apple-iphone-....
   return get(`${BASE_URL}/products/${id}`);
 };

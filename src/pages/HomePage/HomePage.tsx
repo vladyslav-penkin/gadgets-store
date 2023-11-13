@@ -29,10 +29,9 @@ export const HomePage: FC = () => {
 
       setNewProducts(newProducts);
       setHotProducts(hotProducts);
+      setLoading(false);
     } catch {
       setError(true);
-    } finally {
-      setLoading(false)
     }
   }, []);
 

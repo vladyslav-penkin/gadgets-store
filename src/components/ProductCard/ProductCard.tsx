@@ -72,10 +72,7 @@ export const ProductCard: FC<Props> = memo(
         if (isItemFavorite) {
           removeFromFavorites(phoneId);
         } else {
-          addToFavorites({
-            ...product,
-            quantity: 1,
-          });
+          addToFavorites(product);
         }
       }, [
         addToFavorites, 
@@ -107,27 +104,20 @@ export const ProductCard: FC<Props> = memo(
             src={`${BASE_URL}/${image}`}
             alt={name}
           />
-          <h1 className="card__title">
-            {name}
-          </h1>
+          <h1 className="card__title">{name}</h1>
         </Link>
+
         <div className="card__prices">
-          <h1 className="card__price">
-            {`$${price}`}
-          </h1>
+          <h1 className="card__price">{`$${price}`}</h1>
           <h1 className="card__price card__price--discount">
             {`$${fullPrice}`}
           </h1>
         </div>
+
         <div className="card__properties">
           {Object.entries(characteristics).map(([key, value]) => (
-            <div
-              className="card__property"
-              key={key}
-            >
-              <p className="card__property-key">
-                {key}
-              </p>
+            <div className="card__property" key={key}>
+              <p className="card__property-key">{key}</p>
               <p>{value}</p>
             </div>
           ))}

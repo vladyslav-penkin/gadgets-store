@@ -98,7 +98,7 @@ export const HomeSlider: FC<Props> = ({
           <Slider {...settingsSlider}>
             {[1, 2, 3, 4, 5, 6].map((product) => (
               <div className="slider__item" key={product}>
-                <ProductCardSkeleton />
+                <ProductCardSkeleton isError={isError} />
               </div>
             ))}
           </Slider>

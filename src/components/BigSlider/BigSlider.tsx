@@ -12,10 +12,12 @@ import { useTheme } from '@hooks/useTheme';
 import { useResize } from '@hooks/useResize';
 import { BASE_URL, Banner, getBanners } from '@api/requests';
 import { Loader } from '@components/Loader/Loader';
+import classNames from 'classnames';
 
 
 export const BigSlider: FC = memo(() => {
   const [banners, setBanners] = useState<Banner[]>([]);
+  const [isError, setError] = useState<boolean>(false);
   const isMobile = useResize();
 
   const {
@@ -67,8 +69,13 @@ export const BigSlider: FC = memo(() => {
   };
 
   const loadBanners = async () => {
-    const response = await getBanners();
-    setBanners(response);
+    try {
+      setError(false);
+      const response = await getBanners();
+      setBanners(response);
+    } catch {
+      setError(true);
+    }
   };
 
   useEffect(() => {
@@ -79,7 +86,9 @@ export const BigSlider: FC = memo(() => {
     <div className="BigSlider">
       {banners.length === 0
         ? (
-          <div className="BigSlider__skeleton">
+          <div className={classNames('BigSlider__skeleton', {
+            'BigSlider__skeleton--error': isError,
+          })}>
             <div className="BigSlider__loader">
               <Loader />
             </div>

@@ -21,6 +21,10 @@
     outline: none;
     padding-top: 106%;
     position: relative;
+    
+    &--error {
+      background-color: var(--red-color);
+    }
 
     @include onTablet {
       padding-top: 35%;

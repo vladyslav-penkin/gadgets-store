@@ -1,0 +1,16 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.productSlider {
+  &__pagination {
+    display: grid;
+    gap: 6px;
+
+    @include onDesktop {
+      display: flex;
+      flex-direction: column;
+      min-width: 13%;
+      gap: 1rem;
+    }
+  }
+}

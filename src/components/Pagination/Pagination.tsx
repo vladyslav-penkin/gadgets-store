@@ -19,6 +19,8 @@ export const Pagination: FC<Props> = ({
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page') || '1');
+  const perPage = Number(searchParams.get('perPage') || '8');
+  const quantityPages = Math.ceil(quantity / perPage);
 
   const onPageChange = useCallback((page: string) => {
     updateSearchParams(
@@ -56,8 +58,9 @@ export const Pagination: FC<Props> = ({
   }, []);
 
   const allVisibleBullets = useMemo(() => {
-    return getBulletTitles(quantity);
-  }, [getBulletTitles, quantity]);
+    console.log(quantityPages);
+    return getBulletTitles(quantityPages);
+  }, [getBulletTitles, quantityPages]);
 
   const visibleBullets = useMemo(() => {
     return getVisibleBullets(page, allVisibleBullets);
@@ -66,7 +69,7 @@ export const Pagination: FC<Props> = ({
   return (
     <article className="pagination">
       <PaginationButton
-        totalPages={quantity}
+        totalPages={quantityPages}
         type={PaginationButtonType.Previous}
         currentPage={page}
         onClick={() => onPageChange(String(page - 1))}
@@ -77,7 +80,7 @@ export const Pagination: FC<Props> = ({
         onClick={(bullet: number) => onPageChange(String(bullet))}
       />
       <PaginationButton
-        totalPages={quantity}
+        totalPages={quantityPages}
         type={PaginationButtonType.Next}
         currentPage={page}
         onClick={() => onPageChange(String(page + 1))}

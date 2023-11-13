@@ -1,0 +1,34 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.productSlider {
+  margin-bottom: 2.5rem;
+  &__container {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+    gap: 16px;
+    @include onTablet {
+      display: flex;
+      flex-grow: 1.1;
+      grid-column: 1 / 2;
+    }
+
+    @include onDesktop {
+      flex-direction: row;
+    }
+  }
+}
+
+.swiper {
+  width: 100%;
+  overflow: hidden;
+  &-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  &-slide {
+    width: 100%;
+    height: 100%;
+  }
+}

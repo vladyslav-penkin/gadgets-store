@@ -31,7 +31,6 @@ export const ProductsPage: FC<Props> = ({
     models: 0,
   });
   const isHasProducts = productInfo.products.length > 0;
-  const [quantityPages, setQuantityPages] = useState<number>(0);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isError, setError] = useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -54,6 +53,13 @@ export const ProductsPage: FC<Props> = ({
         return '';
     }
   }, [productType]);
+
+  const linkLine = [
+    {
+      title: productType,
+      link: `/${productType}`,
+    }
+  ];
 
   const onSortChange = useCallback((
     sort: string,
@@ -110,18 +116,13 @@ export const ProductsPage: FC<Props> = ({
           query
         )
       )
-      setQuantityPages(
-        (await getProducts(
-          +perPage
-        )).pages
-      )
     } catch {
       setError(true);
     } finally {
       setLoading(false);
       scrollTo(0, 0);
     }
-  }
+  };
 
   if (!query) {
     searchParams.delete('query');
@@ -131,14 +132,9 @@ export const ProductsPage: FC<Props> = ({
     getDataFromServer();
   }, [searchParams, query, perPage, productType]);
 
-  const linkLine = useMemo(() => {
-    return [
-      {
-        title: productType,
-        link: `/${productType}`,
-      }
-    ]
-  }, [productType]);
+  useEffect(() => {
+    searchParams.delete('page');
+  }, [perPage, searchParams]);
 
   return (
     <article className="productsPage">
@@ -189,9 +185,10 @@ export const ProductsPage: FC<Props> = ({
           <ProductsList
             products={productInfo?.products}
             isLoading={isLoading}
+            isError={isError}
           />
         )}
-        {isHasProducts && <Pagination quantity={quantityPages} />}
+        {isHasProducts && <Pagination quantity={productInfo.models} />}
       </Container>
     </article>
   );

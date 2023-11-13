@@ -44,11 +44,10 @@ export const ShopBy: FC = () => {
           1,
           [ProductType.ACCESSORIES]
         )
-      )
+      );
+      setLoading(false);
     } catch {
       setError(true);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -68,9 +67,9 @@ export const ShopBy: FC = () => {
       >
         {isLoading && (
           <>
-            <CategoryCardSkeletons />
-            <CategoryCardSkeletons />
-            <CategoryCardSkeletons />
+            <CategoryCardSkeletons isError={isError} />
+            <CategoryCardSkeletons isError={isError} />
+            <CategoryCardSkeletons isError={isError} />
           </>
         )}
         {!isLoading &&  (

@@ -1,0 +1,26 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.capacities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.capacity {
+  &__button {
+    @extend %flex-center;
+    font-size: 13px;
+    color: var(--white-color);
+    padding: 0.5rem;
+    height: 2rem;
+    background-color: transparent;
+    border: 1px solid var(--secondary-color);
+    transition: 0.3s ease;
+
+    &--active {
+      color: var(--black-color);
+      background-color: var(--white-color);
+    }
+  }
+}

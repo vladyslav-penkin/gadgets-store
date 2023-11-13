@@ -1,0 +1,23 @@
+.productSlider {
+  &__bullet {
+    position: relative;
+    background: transparent;
+    border: 2px solid var(--elements-color);
+    padding-bottom: 100%;
+
+    &-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    &--active {
+      border: 2px solid var(--white-color);
+    }
+  }
+}

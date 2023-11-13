@@ -1,25 +1,64 @@
 import { FC } from 'react';
 import './ProductCardSkeleton.scss';
+import classNames from 'classnames';
 
-export const ProductCardSkeleton: FC = () => {
+type Props = {
+  isError?: boolean;
+};
+
+export const ProductCardSkeleton: FC<Props> = ({
+  isError = false,
+}) => {
   return (
     <div
-      className="card-skeleton"
+      className={classNames(
+        'card-skeleton', {
+          'card-skeleton--error': isError,
+        }
+      )}
     >
-      <div className="card-skeleton__image"></div>
-      <div className="card-skeleton__title card-skeleton__title--1"></div>
-      <div className="card-skeleton__title card-skeleton__title--2"></div>
+      <div className={classNames(
+        'card-skeleton__image', {
+          'card-skeleton__image--error': isError,
+        }
+      )}></div>
+      {[1, 2].map((num: number) => (
+        <div className={classNames(
+          'card-skeleton__title',
+          `card-skeleton__title--${num}`, {
+            'card-skeleton__title--error': isError,
+          }
+        )}></div>
+      ))}
 
-      <div className="card-skeleton__prices"></div>
+      <div className={classNames(
+        'card-skeleton__prices', {
+          'card-skeleton__prices--error': isError,
+        }
+      )}></div>
       <div className="card-skeleton__properties">
-        <div className="card-skeleton__property"></div>
-        <div className="card-skeleton__property"></div>
-        <div className="card-skeleton__property"></div>
+        {[1, 2, 3].map((property: number) => (
+          <div
+            className={classNames(
+              'card-skeleton__property', {
+                'card-skeleton__property--error': isError,
+              }
+            )}
+            key={property}
+          ></div>
+        ))}
       </div>
 
       <div className="card-skeleton__buttons">
-        <div className="card-skeleton__button1"></div>
-        <div className="card-skeleton__button2"></div>
+        {[1, 2].map((button: number) => (
+          <div 
+          className={classNames(
+            `card-skeleton__button${button}`, {
+              [`card-skeleton__button${button}--error`]: isError,
+            }
+          )}
+          ></div>
+        ))}
       </div>
     </div>
   );
