@@ -6,7 +6,7 @@ import {
 } from 'react';
 import {
   useLocaleStorage,
-} from '@/hooks/useLocaleStorage';
+} from '@hooks/useLocaleStorage';
 import logoDarkIcon from '@assets/icons/logoDark.svg';
 import logoLightIcon from '@assets/icons/logoLight.svg';
 import favoritesDarkIcon from '@assets/icons/favouritesDark.svg';
@@ -23,6 +23,12 @@ import arrowUpDarkIcon from '@assets/icons/arrowUpDark.svg';
 import arrowUpLightIcon from '@assets/icons/arrowUpLight.svg';
 import homeDarkIcon from '@assets/icons/homeDark.svg';
 import homeLightIcon from '@assets/icons/homeLight.svg';
+import closeBasketDarkIcon from '@assets/icons/closeBasketDark.svg';
+import closeBasketLightIcon from '@assets/icons/closeBasketLight.svg';
+import minusDarkIcon from '@assets/icons/minusDark.svg';
+import minusLightIcon from '@assets/icons/minusLight.svg';
+import plusDarkIcon from '@assets/icons/plusDark.svg';
+import plusLightIcon from '@assets/icons/plusLight.svg';
 
 type Theme = 'dark' | 'light';
 type ThemeProvider = {
@@ -37,6 +43,9 @@ type ThemeProvider = {
     arrowLeftIcon: string;
     arrowUpIcon: string;
     homeIcon: string;
+    closeBasketIcon: string;
+    plusIcon: string;
+    minusIcon: string;
   };
 };
 
@@ -52,6 +61,9 @@ export const ThemeContext = createContext<ThemeProvider>({
     arrowLeftIcon: arrowLeftDarkIcon,
     arrowUpIcon: arrowUpDarkIcon,
     homeIcon: homeDarkIcon,
+    closeBasketIcon: closeBasketDarkIcon,
+    minusIcon: minusDarkIcon,
+    plusIcon: plusDarkIcon,
   },
 });
 
@@ -92,7 +104,16 @@ export const ThemeProvider: FC<Props> = ({
         : arrowUpLightIcon,
       homeIcon: isDarkTheme
         ? homeDarkIcon
-        : homeLightIcon
+        : homeLightIcon,
+      closeBasketIcon: isDarkTheme
+        ? closeBasketDarkIcon
+        : closeBasketLightIcon,
+      minusIcon: isDarkTheme
+        ? minusDarkIcon
+        : minusLightIcon,
+      plusIcon: isDarkTheme
+        ? plusDarkIcon
+        : plusLightIcon,
     };
   }, [isDarkTheme]);
 

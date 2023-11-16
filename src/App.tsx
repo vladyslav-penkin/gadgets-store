@@ -26,6 +26,7 @@ import { FavoritesPage } from '@pages/FavoritesPage/FavoritesPage';
 import { CartPage } from '@pages/CartPage/CartPage';
 import { Header } from '@components/Header/Header';
 import { Footer } from '@components/Footer/Footer';
+import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 
 const App: FC = () => {
   const { theme } = useTheme();
@@ -62,6 +63,7 @@ const App: FC = () => {
               <Route path="favorites" element={<FavoritesPage />} />
               <Route path="cart" element={<CartPage />} />
               <Route path="contacts" element={<ContactsPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
 

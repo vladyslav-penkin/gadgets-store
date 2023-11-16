@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.cartPage {
+  &__title {
+    margin-bottom: 40px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    
+    @include onDesktop {
+      gap: 3rem;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/animations.scss';
+
+.pageNotFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__title {
+    margin-bottom: 1.9rem;
+    color: var(--white-color);
+    font-weight: 700;
+
+    @media (min-width: 480px) {
+      font-size: 1.4rem;
+    }
+
+    @include onTablet {
+      font-size: 1.6rem;
+    }
+  }
+  &__image {
+    width: 15.6rem;
+    margin-bottom: 40px;
+    animation: bubbing .7s;
+
+    @media (min-width: 480px) {
+      width: 18.75rem;
+    }
+
+    @include onTablet {
+      width: 21.9rem;
+    }
+  }
+  &__button {
+    margin-bottom: 3rem;
+    padding: 9.5px 0;
+    min-width: 12.5rem;
+    background-color: var(--accent-color);
+    color: var(--pagination-text);
+    text-align: center;
+  }
+}

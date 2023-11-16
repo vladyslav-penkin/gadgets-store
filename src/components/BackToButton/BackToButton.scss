@@ -8,9 +8,14 @@
     align-items: center;
     gap: 0.6rem;
     max-width: max-content;
-    color: var(--white-color);
+    color: var(--secondary-color);
     font-size: 12px;
     font-weight: 800;
+    transition: 0.3s ease;
+    
+    &:hover {
+      color: var(--white-color);
+    }
   }
 
   &__image {

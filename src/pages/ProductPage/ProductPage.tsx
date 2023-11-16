@@ -1,5 +1,6 @@
 import { 
   FC,
+  memo,
   useState,
   useEffect, 
   useCallback,
@@ -25,7 +26,7 @@ type Props = {
   productType: ProductType;
 };
 
-export const ProductPage: FC<Props> = ({
+export const ProductPage: FC<Props> = memo(({
   productType,
 })  => {
   const [item, setItem] = useState<Phone>();
@@ -117,4 +118,4 @@ export const ProductPage: FC<Props> = ({
         )}
     </>
   );
-}
+});

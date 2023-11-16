@@ -12,7 +12,43 @@
   }
 }
 
+.scelet-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, max-content);
+  gap: 4rem;
+
+  @include onTablet {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, max-content);
+  }
+  @include onLaptop {
+    grid-template-columns: repeat(2, 500px);
+  }
+}
+
+.scelet-settings {
+  grid-row: 1 / 2;
+
+  @include onTablet {
+    grid-column: 2 / 3;
+  }
+}
+
+.scelet-techspecs {
+  grid-row: 3 / -1;
+
+  @include onTablet {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+  }
+}
 .scelet-about {
+  grid-row: 2 / 3;
+
+  @include onTablet {
+    grid-column: 1 / 2;
+  }
   &__title {
     position: relative;
     font-family: 'Mont';

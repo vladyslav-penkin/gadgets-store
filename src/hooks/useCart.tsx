@@ -61,7 +61,7 @@ export const useCart = (): CartValues  => {
     (itemId: string, method: QuantityMethods) => {
       setCartItems((prev: CartItem[]) => (
         prev.map((cartItem: CartItem) => (
-          cartItem.id === itemId
+          cartItem.phoneId === itemId
             ? {
               ...cartItem,
               quantity: method === 'increase'
@@ -74,7 +74,7 @@ export const useCart = (): CartValues  => {
     }, [setCartItems],
   );
 
-  const totalPrice = useCallback(
+  const getTotalPrice = useCallback(
     () => (
      cartItems.reduce((acc, curr) => (
       acc + (curr.price * curr.quantity) 
@@ -82,7 +82,7 @@ export const useCart = (): CartValues  => {
     ), [cartItems],
   );
 
-  const totalQuantity = useCallback(
+  const getTotalQuantity = useCallback(
     () => (
       cartItems.reduce((acc, curr) => (
         acc + curr.quantity
@@ -96,8 +96,8 @@ export const useCart = (): CartValues  => {
     removeFromCart,
     IsIncludesInCart,
     changeQuantity,
-    totalPrice,
-    totalQuantity,
+    getTotalPrice,
+    getTotalQuantity,
     clearCart,
   ];
 };

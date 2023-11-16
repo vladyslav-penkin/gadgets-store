@@ -1,0 +1,32 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.favoritesPage {
+  &__total {
+    display: block;
+    color: var(--secondary-color);
+    font-size: 14px;
+    margin-bottom: 2.5rem;
+  }
+
+  &__products {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(262px, 340px));
+    column-gap: 16px;
+    row-gap: 40px;
+    align-items: center;
+    justify-content: center;
+
+    @include onTablet {
+      grid-template-columns: repeat(2, 237px);
+    }
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 237px);
+    }
+
+    @include onLaptop {
+      grid-template-columns: repeat(4, 272px);
+    }
+  }
+}
