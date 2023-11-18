@@ -69,7 +69,11 @@ export const ProductPage: FC<Props> = memo(({
       link: `/${productType}/${itemCard}`
     }
   ];
-  const product = item ? getShortInfo(item) : null;
+  const product = item
+    ? {
+      ...getShortInfo(item),
+      category: productType,
+    } : null;
   const isProductFound = item && product;
 
   return (
@@ -95,7 +99,7 @@ export const ProductPage: FC<Props> = memo(({
                     title="About"
                   >
                     <ProductAbout
-                    description={item.description}
+                      description={item.description}
                     />
                   </ProductDescription>
                   <ProductDescription
