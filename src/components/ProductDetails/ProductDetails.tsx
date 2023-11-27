@@ -91,6 +91,7 @@ export const ProductDetails: FC<Props> = ({
       <section className="productDetails__container">
         <ProductColors
           id={namespaceId}
+          productId={productShortInfo.id}
           colors={colorsAvailable}
           capacity={capacity}
           productType={productType}

@@ -45,7 +45,7 @@ export const Basket: FC<Props> = ({
       paddingBottom: 0,
       opacity: 0,
     }
-   }
+   };
 
   return (
     <motion.div
@@ -64,7 +64,7 @@ export const Basket: FC<Props> = ({
             onClick={() => removeFromCart(cartItem.phoneId)}
           />
           <Link
-              className="basket__link"
+            className="basket__link"
             to={`/${cartItem.category}/${cartItem.phoneId}`}
           >
             <img
@@ -84,7 +84,9 @@ export const Basket: FC<Props> = ({
                 changeQuantity(cartItem.phoneId, 'decrease');
               }}
             />
-            <p className="basket__quantity">{cartItem.quantity}</p>
+            <p className="basket__quantity">
+              {cartItem.quantity}
+            </p>
             <BasketButton
               icon={plusIcon}
               isDisabled={(cartItem?.quantity || 1) >= 20}
@@ -93,7 +95,9 @@ export const Basket: FC<Props> = ({
               }}
             />
           </div>
-          <p className="basket__price">${cartItem.price}</p>
+          <p className="basket__price">
+            ${cartItem.price}
+          </p>
         </div>
       </div>
     </motion.div>

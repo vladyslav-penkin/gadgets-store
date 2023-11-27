@@ -18,6 +18,20 @@
   }
 }
 
+@keyframes liked {
+  0% {
+    transform: scale(1);
+  } 25% {
+    transform: scale(1.25);
+  } 50% {
+    transform: scale(1);
+  } 75% {
+    transform: scale(1.25);
+  } 100% {
+    transform: scale(1)
+  }
+}
+
 %skeleton {
   background-color: var(--mockup-color);
   border-radius: 5px;

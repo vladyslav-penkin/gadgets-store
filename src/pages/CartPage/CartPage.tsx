@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import './CartPage.scss';
 import { Container } from '@components/Container/Container';
 import { BackToButton } from '@components/BackToButton/BackToButton';
@@ -15,29 +15,33 @@ export const CartPage: FC = () => {
     { title: 'Cart', link: '/cart'}
   ]
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Container>
-      {cartItems.length === 0
-        ? (
-          <>
-            <LinkLine titles={linkLine} />
+      <article className="cartPage">
+        <LinkLine titles={linkLine} />
+        {cartItems.length === 0
+          ? (
             <PageNotFound
               image={cartEmpty}
               title={'Looks like your cart is empty...'}
               link={'phones'}
               button={'Go shopping!'}
             />
-          </>
-        ) : (
-          <>
-            <BackToButton to={'/'} />
-            <h1 className="cartPage__title">Cart</h1>
-            <div className="cartPage__container">
-              <Baskets cartItems={cartItems} />
-              <Checkout />
-            </div>
-          </>
-        )}
+          ) : (
+            <>
+              <BackToButton to={'/'} />
+              <h1 className="cartPage__title">Cart</h1>
+              <div className="cartPage__container">
+                <Baskets cartItems={cartItems} />
+                <Checkout />
+              </div>
+            </>
+          )}
+      </article>
     </Container>
   );
 }

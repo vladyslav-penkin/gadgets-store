@@ -8,7 +8,7 @@ import {
 import './DropDown.scss';
 import classNames from 'classnames';
 import { SortBy } from '@/types/SortBy';
-import { DropDownItem } from '@/components/DropDown/DropDownItem/DropDownItem';
+import { DropDownItem } from '@components/DropDown/DropDownItem/DropDownItem';
 import { DropDownButton } from '@components/DropDown/DropDownButton/DropDownButton';
 
 type Props = {
@@ -66,7 +66,11 @@ export const DropDown: FC<Props> = memo(
   
     return (
       <div
-        className="dropdown"
+        className={classNames(
+          'dropdown', {
+            'dropdown--opened': isOpen,
+          }
+        )}
         ref={dropDownRef}
       >
         <DropDownButton
@@ -74,6 +78,7 @@ export const DropDown: FC<Props> = memo(
           stateDropDown={
             sortByNames[stateDropDown as SortBy] || stateDropDown
           }
+          isOpen={isOpen}
         />
         <ul
           className={classNames(

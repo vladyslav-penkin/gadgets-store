@@ -92,9 +92,7 @@ export const ProductCard: FC<Props> = memo(
     }, [inces, capacity, ram]);
   
     return (
-      <div
-        className="card"
-      >
+      <div className="card">
         <Link
           to={`/${category}/${phoneId}`}
           className="card__link"

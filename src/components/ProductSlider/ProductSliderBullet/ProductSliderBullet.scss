@@ -4,6 +4,7 @@
     background: transparent;
     border: 2px solid var(--elements-color);
     padding-bottom: 100%;
+    opacity: 0.5;
 
     &-image {
       position: absolute;
@@ -18,6 +19,7 @@
 
     &--active {
       border: 2px solid var(--white-color);
+      opacity: 1;
     }
   }
 }

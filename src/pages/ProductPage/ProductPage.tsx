@@ -94,22 +94,20 @@ export const ProductPage: FC<Props> = memo(({
                   productShortInfo={product}
                   productType={productType}
                 />
+
                 <div className="product__productDescription">
-                  <ProductDescription
-                    title="About"
-                  >
+                  <ProductDescription title="About">
                     <ProductAbout
                       description={item.description}
                     />
                   </ProductDescription>
-                  <ProductDescription
-                    title="TechSpecs"
-                  >
+                  <ProductDescription title="TechSpecs">
                     <ProductTechSpecs
                       product={item}
                     />
                   </ProductDescription>
                 </div>
+
                 <HomeSlider
                   products={recommended}
                   title={'You may also like'}

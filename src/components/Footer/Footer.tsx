@@ -27,7 +27,7 @@ export const Footer: FC = () => {
         </Link>
         <ul className="footer__list">
           <FooterLink
-            href="https://github.com/Vlados3611"
+            href="https://github.com/vladyslav-penkin"
             content="GITHUB"
           />
           <li className="footer__item">
@@ -39,7 +39,7 @@ export const Footer: FC = () => {
             </Link>
           </li>
           <FooterLink
-            href="https://github.com/Vlados3611"
+            href="https://github.com/vladyslav-penkin"
             content="RIGHTS"
           />
         </ul>

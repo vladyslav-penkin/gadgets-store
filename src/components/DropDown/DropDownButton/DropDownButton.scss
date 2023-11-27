@@ -14,4 +14,10 @@
     color: var(--white-color);
     line-height: 21px;
   }
+
+  &__arrow {
+    &--focused {
+      transform: rotate(-180deg);
+    }
+  }
 }

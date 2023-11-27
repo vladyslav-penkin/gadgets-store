@@ -3,7 +3,7 @@ import { Product } from "@/types/Product";
 
 export const getShortInfo = (product: Phone): Product => {
   return {
-    "id": product.id,
+    "id": product.productId,
     "category": 'category',
     "phoneId": product.id,
     "itemId": product.id,

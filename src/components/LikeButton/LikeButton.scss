@@ -1,15 +1,25 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
+@import '../../styles/animations.scss';
 
-.card__like-button {
-  @extend %flex-center;
-  background-color: var(--surface2-color);
-  min-width: 40px;
-  min-height: 40px;
-  border: 1px solid var(--border-color);
-  transition: 0.3s ease;
+.card__like {
+  &-button {
+    @extend %flex-center;
+    background-color: var(--surface2-color);
+    min-width: 40px;
+    min-height: 40px;
+    border: 1px solid var(--border-color);
+    transition: 0.3s ease;
 
-  &--pressed {
-    background-color: var(--surface1-color);
+    &--pressed {
+      background-color: var(--surface1-color);
+    }
+  }
+
+  &-icon {
+    &--pressed {
+      animation: liked 1s alternate;
+    }
   }
 }
+

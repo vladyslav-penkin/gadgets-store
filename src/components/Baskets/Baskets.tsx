@@ -14,7 +14,7 @@ export const Baskets: FC<Props> = ({
     <section className="baskets">
       {cartItems.map((item: Product) => (
         <Basket
-           key={item.id}
+          key={item.id}
           cartItem={item}
         />
       ))}

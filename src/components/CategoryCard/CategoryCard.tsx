@@ -19,23 +19,26 @@ export const CategoryCard: FC<Props> = ({
     <section
       className="category-card"
     >
+      <div className="category-card__link">
+        <Link
+          to={link}
+        >
+          <img
+            className="category-card__image"
+            src={image}
+            alt={title}
+          />
+        </Link>
+      </div>
       <Link
         to={link}
-        className="category-card__link"
+        className="category-card__title"
       >
-        <img
-          className="category-card__image"
-          src={image}
-          alt={title}
-        />
-
-        <h2 className="category-card__title">
-          {title}
-        </h2>
-        <p className="category-card__amount">
-          {`${amount} models`}
-        </p>
+        {title}
       </Link>
+      <p className="category-card__amount">
+         {`${amount} models`}
+      </p>
     </section>
   );
 };

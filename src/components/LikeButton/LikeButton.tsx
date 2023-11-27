@@ -42,6 +42,11 @@ export const LikeButton: FC<Props> = memo(
               : favoriteIcon
           }
           alt="favoriteItem"
+          className={classNames(
+            'card__like-icon', {
+              'card__like-icon--pressed': isItemFavorite
+            }
+          )}
         />
       </button>
     );

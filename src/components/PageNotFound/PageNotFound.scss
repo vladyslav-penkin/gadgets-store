@@ -11,6 +11,7 @@
     margin-bottom: 1.9rem;
     color: var(--white-color);
     font-weight: 700;
+    animation: bubbing .7s;
 
     @media (min-width: 480px) {
       font-size: 1.4rem;
@@ -40,5 +41,6 @@
     background-color: var(--accent-color);
     color: var(--pagination-text);
     text-align: center;
+    animation: bubbing .7s;
   }
 }

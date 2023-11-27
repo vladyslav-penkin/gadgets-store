@@ -32,6 +32,8 @@ export const HomePage: FC = () => {
       setLoading(false);
     } catch {
       setError(true);
+    } finally {
+      window.scrollTo(0, 0);
     }
   }, []);
 

@@ -4,6 +4,7 @@ import { ProductType } from '@/types/ProductType';
 import { ProductColor } from '@components/ProductDetails/ProductColor/ProductColor';
 type Props = {
   id: string;
+  productId: string;
   colors: string[];
   capacity: string;
   productType: ProductType;
@@ -11,6 +12,7 @@ type Props = {
 
 export const ProductColors: FC<Props> = ({
   id,
+  productId,
   colors,
   capacity,
   productType,
@@ -19,7 +21,7 @@ export const ProductColors: FC<Props> = ({
     <section className="colors">
       <div className="colors__header">
         <p className="colors__header-title">Available colors</p>
-        <p className="colors__header-id">ID: </p>
+        <p className="colors__header-id">ID: {productId}</p>
       </div>
       <div className="colors__options">
         {colors.map((color: string) => {

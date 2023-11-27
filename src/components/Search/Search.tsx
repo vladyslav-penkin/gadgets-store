@@ -5,6 +5,7 @@ import {
   useRef,
 } from 'react';
 import './Search.scss';
+import classNames from 'classnames';
 
 type Props = {
   searchQuery: string;
@@ -16,21 +17,29 @@ export const Search: FC<Props> = ({
   onChange,
 }) => {
   const [query, setQuery] = useState<string>(searchQuery);
+  const [isFocused, setFocused] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   const handleFocus = useCallback(() => {
     searchRef.current?.focus();
+    setFocused(true);
   }, []);
 
   return (
     <section 
       className="search"
-      onClick={handleFocus}
     >
       <p className="search__title">
         Search
       </p>
-      <div className="search__container">
+      <div
+        className={classNames(
+          'search__container', {
+            'search__container--focused': isFocused,
+          }
+        )}
+        onClick={handleFocus}
+      >
         <input 
           type="text" 
           value={query}
@@ -41,6 +50,8 @@ export const Search: FC<Props> = ({
             setQuery(value);
             onChange(value);
           }}
+          onBlur={() => setFocused(false)}
+          onFocus={handleFocus}
         />
         <div className="search__image"></div>
       </div>
