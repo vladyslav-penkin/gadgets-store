@@ -8,14 +8,13 @@ type Props = {
   capacities: string[];
 };
 
-export const ProductCapacity: FC<Props> = ({
-  productType,
-  capacities,
-}) => {
+export const ProductCapacity: FC<Props> = ({ productType, capacities }) => {
   return (
     <article className="productCapacity">
       <section className="productCapacity__header">
-        <p className="productCapacity__header-title">Select capacity</p>
+        <p className="productCapacity__header-title">
+          Select capacity
+        </p>
       </section>
       <section className="productCapacty__options">
         <Capacities

@@ -10,9 +10,7 @@ import favoritesEmpty from '@assets/icons/favortiesEmpty.webp';
 
 export const FavoritesPage: FC = () => {
   const { favorites } = useLocaleStorageContext();
-  const linkLine = [
-    { title: 'Favorites', link: '/favorites'}
-  ];
+  const linkLine = [{ title: 'Favorites', link: '/favorites'}];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,7 +32,7 @@ export const FavoritesPage: FC = () => {
             <>
               <h1 className="favoritesPage__title">
                 Favorites
-                </h1>
+              </h1>
               <span className="favoritesPage__total">
                 {favorites.length} items
               </span>
@@ -44,7 +42,7 @@ export const FavoritesPage: FC = () => {
                     key={favorite.id}
                     product={favorite}
                   />
-                 ))}
+                ))}
               </section>
             </>
           )}

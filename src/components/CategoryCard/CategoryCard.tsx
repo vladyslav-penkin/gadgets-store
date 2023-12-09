@@ -16,13 +16,9 @@ export const CategoryCard: FC<Props> = ({
   amount,
 }) => {
   return (
-    <section
-      className="category-card"
-    >
+    <section className="category-card">
       <div className="category-card__link">
-        <Link
-          to={link}
-        >
+        <Link to={link}>
           <img
             className="category-card__image"
             src={image}
@@ -30,15 +26,11 @@ export const CategoryCard: FC<Props> = ({
           />
         </Link>
       </div>
-      <Link
-        to={link}
-        className="category-card__title"
-      >
+
+      <Link to={link} className="category-card__title">
         {title}
       </Link>
-      <p className="category-card__amount">
-         {`${amount} models`}
-      </p>
+      <p className="category-card__amount">{`${amount} models`}</p>
     </section>
   );
 };

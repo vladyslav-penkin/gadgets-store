@@ -1,0 +1,20 @@
+@import '../../../styles/mixins.scss';
+
+.card {
+  &__image {
+    align-self: center;
+    height: 129px;
+    margin: 0 0 24px;
+    object-fit: contain;
+
+    @include onTablet {
+      width: 173px;
+      height: 202px;
+    }
+
+    @include onDesktop {
+      width: 208px;
+      height: 196px;
+    }
+  }
+}

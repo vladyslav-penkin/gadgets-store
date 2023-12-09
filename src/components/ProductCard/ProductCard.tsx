@@ -4,12 +4,15 @@ import {
   useCallback,
   useMemo,
 } from 'react';
+import './ProductCard.scss';
 import { Link } from 'react-router-dom';
 import { useLocaleStorageContext } from '@hooks/useLocaleStorageContext';
-import { AddToCartButton } from '@components/AddToCartButton/AddToCartButton';
-import { LikeButton } from '@components/LikeButton/LikeButton';
 import { Product } from '@/types/Product';
 import { BASE_URL } from '@api/requests';
+import { CardButtons } from '@components/CardButtons/CardButtons';
+import { CardPrices } from '@components/ProductCard/CardPrices/CardPrices';
+import { CardImage } from '@components/ProductCard/CardImage/CardImage';
+import { CardProperty } from '@components/CardProperty/CardProperty';
 
 type Props = {
   product: Product;
@@ -37,8 +40,6 @@ export const ProductCard: FC<Props> = memo(
       isIncludesInCart,
       isIncludesInFavorites,
     } = useLocaleStorageContext();
-
-    const inces = screen.split(' ')[0];
   
     const isAddedToCart = useMemo(() => {
       return isIncludesInCart(phoneId);
@@ -48,41 +49,19 @@ export const ProductCard: FC<Props> = memo(
       return isIncludesInFavorites(phoneId);
     }, [isIncludesInFavorites, phoneId]);
   
-    const handleAddToCart = useCallback(
-      () => {
-        if (isAddedToCart) {
-          removeFromCart(phoneId);
-        } else {
-          addToCart({
-            ...product,
-            quantity: 1,
-          });
-        }
-      }, [
-        addToCart, 
-        isAddedToCart, 
-        phoneId, 
-        product, 
-        removeFromCart,
-      ],
-    );
+    const toggleCart = useCallback(() => {
+      isAddedToCart
+         ? removeFromCart(phoneId)
+        : addToCart({ ...product, quantity: 1 });
+    }, [addToCart, isAddedToCart, phoneId, product, removeFromCart]);
   
-    const handleAddToFavorites = useCallback(
-      () => {
-        if (isItemFavorite) {
-          removeFromFavorites(phoneId);
-        } else {
-          addToFavorites(product);
-        }
-      }, [
-        addToFavorites, 
-        isItemFavorite, 
-        phoneId, 
-        product, 
-        removeFromFavorites,
-      ],
-    );
-  
+    const toggleFavorites = useCallback(() => {
+      isItemFavorite
+        ? removeFromFavorites(phoneId)
+        : addToFavorites(product);
+    }, [addToFavorites, isItemFavorite, phoneId, product, removeFromFavorites]);
+
+    const inces = screen.split(' ')[0];
     const characteristics = useMemo(() => {
       return {
         Screen: inces,
@@ -93,43 +72,33 @@ export const ProductCard: FC<Props> = memo(
   
     return (
       <div className="card">
-        <Link
-          to={`/${category}/${phoneId}`}
-          className="card__link"
-        >
-          <img
-            className="card__image"
-            src={`${BASE_URL}/${image}`}
-            alt={name}
-          />
+        <Link to={`/${category}/${phoneId}`} className="card__link">
+          <CardImage image={`${BASE_URL}/${image}`} name={name} />
           <h1 className="card__title">{name}</h1>
         </Link>
 
-        <div className="card__prices">
-          <h1 className="card__price">{`$${price}`}</h1>
-          <h1 className="card__price card__price--discount">
-            {`$${fullPrice}`}
-          </h1>
-        </div>
+        <CardPrices
+          currentPrice={price}
+          fullPrice={fullPrice}
+        />
 
         <div className="card__properties">
           {Object.entries(characteristics).map(([key, value]) => (
-            <div className="card__property" key={key}>
-              <p className="card__property-key">{key}</p>
-              <p>{value}</p>
-            </div>
+            <CardProperty 
+              key={key} 
+              label={key} 
+              value={value}
+              className="card" 
+            />
           ))}
         </div>
-        <div className="card__buttons">
-          <AddToCartButton
-            isAddedToCart={isAddedToCart}
-            onAddToCart={handleAddToCart}
-          />
-          <LikeButton
-            isItemFavorite={isItemFavorite}
-            onLike={handleAddToFavorites}
-          />
-        </div>
+
+        <CardButtons
+          isAddedToCart={isAddedToCart}
+          isItemFavorite={isItemFavorite}
+          onToggleCart={toggleCart}
+          onToggleFavorite={toggleFavorites}
+        />
       </div>
     );
   },

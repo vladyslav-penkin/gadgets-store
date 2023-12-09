@@ -2,7 +2,7 @@
   "name": "gadgets-store",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://Vlados3611.github.io/gadgets-store",
+  "homepage": "https://vladyslav-penkin.github.io/gadgets-store/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
@@ -13,7 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/jest": "^29.5.5",
+    "@types/jest": "^29.5.10",
     "axios": "^1.5.1",
     "classnames": "^2.3.2",
     "framer-motion": "^10.16.5",
@@ -26,14 +26,14 @@
     "react-slick": "^0.29.0",
     "react-transition-group": "^4.4.5",
     "slick-carousel": "^1.8.1",
-    "sort-by": "^1.2.0",
+    "sort-by": "^0.0.2",
     "swiper": "^11.0.3"
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.8",
-    "@types/node": "^20.7.1",
-    "@types/react": "^18.2.23",
-    "@types/react-dom": "^18.2.8",
+    "@types/node": "^20.10.2",
+    "@types/react": "^18.2.39",
+    "@types/react-dom": "^18.2.17",
     "@types/react-slick": "^0.23.10",
     "@types/react-transition-group": "^4.4.9",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -44,7 +44,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "gh-pages": "^6.0.0",
     "sass": "^1.68.0",
-    "typescript": "^5.2.2",
+    "typescript": "^5.3.2",
     "vite": "^4.4.5"
   }
 }

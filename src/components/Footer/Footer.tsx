@@ -6,19 +6,12 @@ import { FooterLink } from '@components/Footer/FooterLink/FooterLink';
 import { BackToTop } from '@components/BackToTop/BackToTop';
 
 export const Footer: FC = () => {
-  const {
-    themeIcons: {
-      logoPath,
-    },
-  } = useTheme();
+  const { themeIcons: { logoPath } } = useTheme();
 
   return (
     <article className="footer">
       <section className="footer__container">
-        <Link
-          to="/"
-          className="footer__logo"
-        >
+        <Link to="/" className="footer__logo">
           <img
             className="footer__image"
             src={logoPath}

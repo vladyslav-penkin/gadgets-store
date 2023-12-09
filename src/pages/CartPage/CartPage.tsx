@@ -11,9 +11,7 @@ import { LinkLine } from '@components/LinkLine/LinkLine';
 
 export const CartPage: FC = () => {
   const { cartItems } = useLocaleStorageContext();
-  const linkLine = [
-    { title: 'Cart', link: '/cart'}
-  ]
+  const linkLine = [{ title: 'Cart', link: '/cart'}];
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -2,6 +2,7 @@ import {
   FC,
   useState,
 } from 'react';
+import '@components/Header/Header.scss';
 import {
   useLocaleStorageContext,
 } from '@hooks/useLocaleStorageContext';

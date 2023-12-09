@@ -3,8 +3,8 @@ import {
   useMemo,
   useCallback,
 } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import './Pagination.scss';
+import { useSearchParams } from 'react-router-dom';
 import { updateSearchParams } from '@utils/searchHelper';
 import { PaginationButton } from '@components/Pagination/PaginationButton/PaginationButton';
 import { PaginationBullets } from '@components/Pagination/PaginationBullets/PaginationBullets';
@@ -14,9 +14,7 @@ type Props = {
   quantity: number;
 };
 
-export const Pagination: FC<Props> = ({
-  quantity
-}) => {
+export const Pagination: FC<Props> = ({ quantity }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page') || '1');
   const perPage = Number(searchParams.get('perPage') || '8');
@@ -58,7 +56,6 @@ export const Pagination: FC<Props> = ({
   }, []);
 
   const allVisibleBullets = useMemo(() => {
-    console.log(quantityPages);
     return getBulletTitles(quantityPages);
   }, [getBulletTitles, quantityPages]);
 

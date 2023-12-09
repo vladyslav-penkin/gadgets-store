@@ -1,22 +1,18 @@
 import { FC } from 'react';
-import classNames from 'classnames';
 import '@components/Header/MenuToggler/MenuToggler.scss';
+import classNames from 'classnames';
 
 type Props = {
   isOpen: boolean;
   toggleMenu: () => void;
 };
 
-export const MenuToggler: FC<Props> = ({
-  isOpen,
-  toggleMenu,
-}) => {
+export const MenuToggler: FC<Props> = ({ isOpen, toggleMenu }) => {
   return (
     <button
       className={classNames(
         'header__burger',
-        'burger',
-        {
+        'burger', {
           'burger--opened': isOpen,
         }
       )}

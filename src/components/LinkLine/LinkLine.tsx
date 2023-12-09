@@ -7,11 +7,9 @@ import { useTheme } from '@hooks/useTheme';
 
 type Props = {
   titles: LinkLineType[];
-}
+};
 
-export const LinkLine: FC<Props> = memo(({
-  titles
-}) => {
+export const LinkLine: FC<Props> = memo(({ titles }) => {
   const { 
     themeIcons: {
       homeIcon,
@@ -24,11 +22,8 @@ export const LinkLine: FC<Props> = memo(({
   };
 
   return (
-    <section
-      className="link-line"
-    >
-      <NavLink
-        to="/"
+    <section className="link-line">
+      <NavLink to="/"
         className="link-line__link"
       >
         <img
@@ -47,8 +42,7 @@ export const LinkLine: FC<Props> = memo(({
           <NavLink
             to={link}
             className={({ isActive }) => classNames(
-              'link-line__link',
-              {
+              'link-line__link', {
                 'link-line__link--active': isActive,
               }
             )}

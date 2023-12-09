@@ -4,6 +4,7 @@ import {
   useEffect,
   useCallback,
 } from 'react';
+import './HomePage.scss';
 import { BigSlider } from '@components/BigSlider/BigSlider';
 import { Product } from '@/types/Product';
 import { getNew, getHot } from '@api/requests';

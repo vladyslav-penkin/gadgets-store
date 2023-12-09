@@ -7,14 +7,9 @@ type Props = {
   to: string;
 };
 
-export const BackToButton: FC<Props> = ({
-  to,
-}) => {
-  const {
-    themeIcons: {
-      arrowLeftIcon,
-    }
-  } = useTheme();
+export const BackToButton: FC<Props> = ({ to }) => {
+  const { themeIcons: { arrowLeftIcon } } = useTheme();
+
   return (
     <section className="backToButton">
       <NavLink

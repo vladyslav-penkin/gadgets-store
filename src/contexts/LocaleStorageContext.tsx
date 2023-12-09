@@ -1,6 +1,6 @@
 import { FC, createContext } from 'react';
-import { useCart } from '@/hooks/useCart';
-import { useFavorites } from '@/hooks/useFavorites';
+import { useCart } from '@hooks/useCart';
+import { useFavorites } from '@hooks/useFavorites';
 import { CartItem } from '@/types/CartItem';
 import { Product } from '@/types/Product';
 import { QuantityMethods } from '@/types/QuantityMethods';
@@ -81,9 +81,7 @@ export const LocaleStorageProvider: FC<Props> = ({
   };
 
   return (
-    <LocaleStorageContext.Provider
-      value={contextValue}
-    >
+    <LocaleStorageContext.Provider value={contextValue}>
       {children}
     </LocaleStorageContext.Provider>
   );

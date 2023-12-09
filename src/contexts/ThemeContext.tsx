@@ -117,15 +117,13 @@ export const ThemeProvider: FC<Props> = ({
     };
   }, [isDarkTheme]);
 
-  const toggleTheme = useCallback(
-    () => {
-      setTheme(
-        isDarkTheme
-          ? 'light'
-          : 'dark'
-      )
-    }, [isDarkTheme, setTheme],
-  );
+  const toggleTheme = useCallback(() => {
+    setTheme(
+      isDarkTheme
+         ? 'light'
+        : 'dark'
+    )
+  }, [isDarkTheme, setTheme]);
 
   return (
     <ThemeContext.Provider

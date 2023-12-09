@@ -35,41 +35,6 @@
     line-height: 21px;
   }
 
-  &__prices {
-    display: flex;
-    margin: auto 0 0;
-  }
-
-  &__price {
-    font-size: 22px;
-    font-weight: 800;
-    margin: 0 8px 0 0;
-
-    &--discount {
-      color: var(--secondary-color);
-      text-decoration: line-through;
-      font-weight: 600;
-      margin: 0;
-    }
-  }
-
-  &__image {
-    align-self: center;
-    height: 129px;
-    margin: 0 0 24px;
-    object-fit: contain;
-
-    @include onTablet {
-      width: 173px;
-      height: 202px;
-    }
-
-    @include onDesktop {
-      width: 208px;
-      height: 196px;
-    }
-  }
-
   &__properties {
     border-top: 1px solid var(--secondary-color);
     padding: 16px 0;
@@ -85,10 +50,5 @@
     &-key {
       color: var(--secondary-color);
     }
-  }
-
-  &__buttons {
-    display: flex;
-    gap: 8px;
   }
 }

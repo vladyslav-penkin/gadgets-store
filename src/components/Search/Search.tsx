@@ -12,10 +12,7 @@ type Props = {
   onChange: (value: string) => void;
 };
 
-export const Search: FC<Props> = ({
-  searchQuery,
-  onChange,
-}) => {
+export const Search: FC<Props> = ({ searchQuery, onChange }) => {
   const [query, setQuery] = useState<string>(searchQuery);
   const [isFocused, setFocused] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -26,12 +23,8 @@ export const Search: FC<Props> = ({
   }, []);
 
   return (
-    <section 
-      className="search"
-    >
-      <p className="search__title">
-        Search
-      </p>
+    <section className="search">
+      <p className="search__title">Search</p>
       <div
         className={classNames(
           'search__container', {

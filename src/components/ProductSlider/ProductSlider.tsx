@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 import {
   ProductSliderPagination
-} from '@components/ProductSlider/ProductSliderPagination/ProductSliderPagination';
+} from './ProductSliderPagination/ProductSliderPagination';
 import { ImageSlide } from './ImageSlide/ImageSlide';
 
 type Props = {
@@ -30,10 +30,7 @@ export const ProductSlider: FC<Props> = ({
           activeSlideIndex={activeSlideIndex}
         />
 
-        <Swiper
-          slidesPerView={1}
-          onSwiper={setSwiperRef}
-        >
+        <Swiper slidesPerView={1} onSwiper={setSwiperRef}>
           {productImages.map((productImage: string) => (
             <SwiperSlide key={productImage}>
               <ImageSlide image={productImage} />

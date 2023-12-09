@@ -17,15 +17,13 @@ export const ProductSliderBullet: FC<Props> = ({
   return (
     <button
       className={classNames(
-        'productSlider__bullet',
-        {
+        'productSlider__bullet', {
           'productSlider__bullet--active': isActive,
         }
        )}
       onClick={onClick}
     >
       <div
-        key={image}
         className="productSlider__bullet-image"
         style={{
           backgroundImage: `url(${BASE_URL}/${image})`,

@@ -12,9 +12,7 @@ type Props = {
   cartItem: Product;
 };
 
-export const Basket: FC<Props> = ({
-  cartItem
-}) => {
+export const Basket: FC<Props> = ({ cartItem }) => {
   const {
     themeIcons: {
       closeBasketIcon,

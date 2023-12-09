@@ -5,8 +5,8 @@ import { ProductColors } from '@components/ProductDetails/ProductColors/ProductC
 import { ProductSlider } from '@components/ProductSlider/ProductSlider';
 import { ProductCapacity } from '@components/ProductDetails/ProductCapacity/ProductCapacity';
 import { ProductPrice } from '@components/ProductDetails/ProductPrice/ProductPrice';
-import { AddToCartButton } from '@components/AddToCartButton/AddToCartButton';
-import { LikeButton } from '@components/LikeButton/LikeButton';
+import { CardProperty } from '@components/CardProperty/CardProperty';
+import { CardButtons } from '@components/CardButtons/CardButtons';
 import {
   useLocaleStorageContext
 } from '@hooks/useLocaleStorageContext';
@@ -47,34 +47,21 @@ export const ProductDetails: FC<Props> = ({
   const isAddedToCart = isIncludesInCart(id);
   const isItemFavorite = isIncludesInFavorites(id);
 
-  const handleAddToCart = useCallback(() => {
+  const toggleCart = useCallback(() => {
     if (isAddedToCart) {
       removeFromCart(productShortInfo.phoneId);
     } else {
-      addToCart({
-        ...productShortInfo,
-        quantity: 1,
-      })
+      addToCart({ ...productShortInfo, quantity: 1 })
     }
-  }, [
-    addToCart, 
-    isAddedToCart, 
-    productShortInfo, 
-    removeFromCart,
-  ]);
+  }, [addToCart, isAddedToCart, productShortInfo, removeFromCart]);
 
-  const handleAddToFavorite = useCallback(() => {
+  const toggleFavorite = useCallback(() => {
     if (isItemFavorite) {
       removeFromFavorites(productShortInfo.phoneId);
     } else {
       addToFavorites(productShortInfo)
     }
-  }, [
-    addToFavorites, 
-    isItemFavorite, 
-    productShortInfo, 
-    removeFromFavorites
-  ]);
+  }, [addToFavorites, isItemFavorite, productShortInfo, removeFromFavorites]);
 
   const properties = useMemo(() => {
     return {
@@ -88,6 +75,7 @@ export const ProductDetails: FC<Props> = ({
   return (
     <article className="productDetails">
       <ProductSlider productImages={images} />
+
       <section className="productDetails__container">
         <ProductColors
           id={namespaceId}
@@ -104,21 +92,23 @@ export const ProductDetails: FC<Props> = ({
           actualPrice={priceDiscount}
           defaultPrice={priceRegular}
         />
+
         <div className="productDetails__buttons">
-          <AddToCartButton
+          <CardButtons
             isAddedToCart={isAddedToCart}
-            onAddToCart={handleAddToCart}
-          />
-          <LikeButton
-            isItemFavorite={isItemFavorite} 
-            onLike={handleAddToFavorite}
+            isItemFavorite={isItemFavorite}
+            onToggleCart={toggleCart}
+            onToggleFavorite={toggleFavorite}
           />
         </div>
+
         {Object.entries(properties).map(([key, value]) => (
-          <div className="productDetails__property" key={key}>
-            <p className="productDetails__property-key">{key}</p>
-            <p className="productDetails__property-value">{value}</p>
-          </div>
+          <CardProperty 
+            key={key} 
+            label={key} 
+            value={value}
+            className="productDetails"
+          />
         ))}
       </section>
     </article>

@@ -5,10 +5,7 @@ type Props = {
   content: string;
 };
 
-export const FooterLink: FC<Props> = memo(({
-  href,
-  content
-}) => {
+export const FooterLink: FC<Props> = memo(({ href, content }) => {
   return (
     <li className="footer__item">
       <a

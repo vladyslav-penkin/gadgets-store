@@ -19,12 +19,7 @@ export const HomeSlider: FC<Props> = ({
   isLoading,
   isError,
 }) => {
-  const {
-    themeIcons: {
-      arrowLeftIcon,
-      arrowRightIcon,
-    }
-  } = useTheme();
+  const { themeIcons: { arrowLeftIcon, arrowRightIcon } } = useTheme();
 
   const arrowLeft = (
     <div>
@@ -86,9 +81,7 @@ export const HomeSlider: FC<Props> = ({
   };
 
   return (
-    <article
-      className="slider"
-    >
+    <article className="slider">
       <h2 className="slider__name">
         {isError ? 'Something went wrong' : title}
       </h2>

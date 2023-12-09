@@ -1,15 +1,16 @@
 import { FC } from 'react';
 import classNames from 'classnames';
 import '@components/Header/Header.scss';
-import { useTheme } from '@/hooks/useTheme';
+import { useTheme } from '@hooks/useTheme';
 
 export const ThemeButton: FC = () => {
   const {
     toggleTheme,
     themeIcons: {
       themeIcon,
-    }
+    },
   } = useTheme();
+
   return (
     <button
       className={classNames(
@@ -17,9 +18,7 @@ export const ThemeButton: FC = () => {
         'header__case--button',
       )}
       title="theme"
-      onClick={() => {
-        toggleTheme();
-      }}
+      onClick={() => toggleTheme()}
     >
       <img
         src={themeIcon}

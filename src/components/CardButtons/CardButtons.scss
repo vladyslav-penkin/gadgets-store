@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.card {
+  &__buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+}

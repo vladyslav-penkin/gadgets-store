@@ -10,19 +10,13 @@ type Props = {
   color: string;
 };
 
-export const ProductColor: FC<Props> = ({
-  pathname,
-  color,
-}) => {
+export const ProductColor: FC<Props> = ({ pathname, color }) => {
   return (
     <NavLink
-      to={{
-        pathname,
-      }}
+      to={{ pathname }}
       style={{ backgroundColor: colors[color as Colors] }}
       className={({ isActive }) => classNames(
-        'colors__circles',
-        {
+        'colors__circles', {
           'colors__circles--active': isActive,
         }
       )}

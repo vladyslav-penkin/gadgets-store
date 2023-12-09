@@ -17,13 +17,9 @@ export const useFavorites = (): FavoriteValues  => {
     [],
   );
 
-  const addToFavorites = useCallback(
-    (product: Product) => {
-      setFavorites((prev: Product[]) => (
-        [...prev, product]
-      ));
-    }, [setFavorites],
-  );
+  const addToFavorites = useCallback((product: Product) => {
+    setFavorites((prev: Product[]) => [...prev, product]);
+  }, [setFavorites]);
 
   const removeFromFavorites = useCallback(
     (productId: string) => {

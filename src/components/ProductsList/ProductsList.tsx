@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import './ProductsList.scss';
 import { ProductCard } from '@components/ProductCard/ProductCard';
+import { ProductCardSkeleton } from '@components/ProductCardSkeleton/ProductCardSkeleton';
 import { Product } from '@/types/Product';
-import { ProductCardSkeleton } from '../ProductCardSkeleton/ProductCardSkeleton';
 
 type Props = {
   products: Product[];

@@ -13,18 +13,18 @@ export const Capacities: FC<Props> = ({
   productType,
   capacities,
 }) => {
-  const { itemCard } = useParams();
+  const { itemCard: itemCardParams } = useParams();
 
   return (
     <section className="capacities">
-      {capacities.map((capacity: string) => {
-        const capacityLink = (itemCard || '')
+      {capacities.map((cap: string) => {
+        const capacityLink = (itemCardParams || '')
           .split('-')
           .map((item: string) => (
             item.includes('gb')
             || item.includes('tb')
             || item.includes('mm')
-              ? capacity
+              ? cap
               : item
           ))
           .join('-')
@@ -32,7 +32,7 @@ export const Capacities: FC<Props> = ({
         
         return (
           <NavLink
-            key={capacity}
+            key={cap}
             to={`/${productType}/${capacityLink}`}
             className={({ isActive }) => classNames(
               'capacity__button', {
@@ -40,7 +40,7 @@ export const Capacities: FC<Props> = ({
               }
             )}
           >
-            {capacity}
+            {cap}
           </NavLink>
         );
       })}

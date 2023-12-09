@@ -1,21 +1,21 @@
-import classNames from 'classnames';
 import { FC } from 'react';
+import classNames from 'classnames';
+import './AddToCartButton.scss';
 
 type Props = {
   isAddedToCart: boolean;
-  onAddToCart?: () => void;
+  onToggleCart?: () => void;
 };
 
 export const AddToCartButton: FC<Props> = ({
   isAddedToCart,
-  onAddToCart,
+  onToggleCart,
 }) => {
   return (
     <button
-      onClick={onAddToCart}
+      onClick={onToggleCart}
       className={classNames(
-        'card-button',
-        {
+        'card-button', {
           'card-button--active': isAddedToCart,
         }
       )}

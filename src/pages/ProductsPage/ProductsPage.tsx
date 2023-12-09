@@ -33,14 +33,17 @@ export const ProductsPage: FC<Props> = ({
   const isHasProducts = productInfo.products.length > 0;
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isError, setError] = useState<boolean>(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const sort = searchParams.get('sort') || SortBy.NEW;
   const perPage = searchParams.get('perPage') || '8';
   const page = searchParams.get('page') || '1';
   const query = searchParams.get('query') || '';
-  const sorts = [SortBy.NAME, SortBy.NEW, SortBy.OLD, SortBy.LOW, SortBy.HIGHT];
-  const arrayOfItems = ['8', '16', '32', '64'];
 
+  const sorts = useMemo(() => {
+    return [SortBy.NAME, SortBy.NEW, SortBy.OLD, SortBy.LOW, SortBy.HIGHT];
+  }, []);
+  
   const name = useMemo(() => {
     switch (productType) {
       case ProductType.PHONES:
@@ -53,32 +56,16 @@ export const ProductsPage: FC<Props> = ({
         return '';
     }
   }, [productType]);
+  const arrayOfItems = ['8', '16', '32', '64'];
 
-  const linkLine = [
-    {
-      title: productType,
-      link: `/${productType}`,
-    }
-  ];
+  const linkLine = [{ title: productType, link: `/${productType}` }];
 
-  const onSortChange = useCallback((
-    sort: string,
-  ) => {
-    updateSearchParams(
-      searchParams,
-      setSearchParams,
-      { sort },
-    );
+  const onSortChange = useCallback((sort: string) => {
+    updateSearchParams(searchParams, setSearchParams, { sort });
   }, [searchParams, setSearchParams]);
 
-  const onPerPageChange = useCallback((
-    perPage: string,
-  ) => {
-    updateSearchParams(
-      searchParams,
-      setSearchParams,
-      { perPage },
-    );
+  const onPerPageChange = useCallback((perPage: string) => {
+    updateSearchParams(searchParams, setSearchParams, { perPage });
   }, [searchParams, setSearchParams]);
 
   const debounce = useCallback((
@@ -93,9 +80,7 @@ export const ProductsPage: FC<Props> = ({
       };
     }, []);
 
-  const onQueryChange = debounce((
-    query: string,
-  ) => {
+  const onQueryChange = debounce((query: string) => {
     updateSearchParams(
       searchParams,
       setSearchParams,
@@ -103,38 +88,37 @@ export const ProductsPage: FC<Props> = ({
     )
   }, 1000);
 
-  const getDataFromServer = async () => {
-    setLoading(true);
-    setError(false);
-    try {
-      setProductInfo(
-        await getProducts(
-          +perPage,
-          +page,
-          [productType],
-          sorts.find((by: SortBy) => by === sort) || SortBy.NEW,
-          query
-        )
-      )
-    } catch {
-      setError(true);
-    } finally {
-      setLoading(false);
-      scrollTo(0, 0);
-    }
-  };
-
   if (!query) {
     searchParams.delete('query');
   }
 
   useEffect(() => {
-    getDataFromServer();
-  }, [searchParams, query, perPage, productType]);
+    (async () => {
+      setLoading(true);
+      setError(false);
+
+      try {
+        setProductInfo(
+          await getProducts(
+            +perPage,
+            +page,
+            [productType],
+            sorts.find((by: SortBy) => by === sort) || SortBy.NEW,
+            query
+          )
+        )
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
+        scrollTo(0, 0);
+      }
+    })();
+  }, [page, perPage, productType, query, searchParams, sort, sorts]);
 
   useEffect(() => {
     searchParams.delete('page');
-  }, [perPage, searchParams]);
+  }, [searchParams]);
 
   return (
     <article className="productsPage">
@@ -151,9 +135,7 @@ export const ProductsPage: FC<Props> = ({
             searchQuery={query}
             onChange={onQueryChange}
           />
-          <section
-            className="productsPage__dropDown"
-          >
+          <section className="productsPage__dropDown">
             <div className="productsPage__dropDown-container">
               <p className="productsPage__dropDown-title">
                 Sort By

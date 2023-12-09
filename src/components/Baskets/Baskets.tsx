@@ -7,9 +7,7 @@ type Props = {
   cartItems: Product[];
 };
 
-export const Baskets: FC<Props> = ({
-  cartItems,
-}) => {
+export const Baskets: FC<Props> = ({ cartItems }) => {
   return (
     <section className="baskets">
       {cartItems.map((item: Product) => (

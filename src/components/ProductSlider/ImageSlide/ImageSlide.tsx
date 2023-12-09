@@ -6,9 +6,7 @@ type Props = {
   image: string;
 };
 
-export const ImageSlide: FC<Props> = ({
-  image,
-}) => {
+export const ImageSlide: FC<Props> = ({ image }) => {
   return (
     <div
       className='productSlider__slide'

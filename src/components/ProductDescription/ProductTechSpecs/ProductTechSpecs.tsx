@@ -6,9 +6,7 @@ type Props = {
   product: Phone;
 };
 
-export const ProductTechSpecs: FC<Props> = ({
-  product,
-}) => {
+export const ProductTechSpecs: FC<Props> = ({ product }) => {
   const techSpecs = useMemo(() => {
     return {
       Screen: product.screen,

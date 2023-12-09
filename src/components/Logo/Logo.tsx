@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import './Logo.scss';
 import { Link } from 'react-router-dom';
 
 type Props = {

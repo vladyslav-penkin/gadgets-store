@@ -11,39 +11,36 @@ type Props = {
   clickFunc?: () => void;
 };
 
-export const IconLink: FC<Props> = memo(
-  ({
-    to,
-    src,
-    alt,
-    count,
-    className,
-    clickFunc,
-  }) => {
-    return (
-      <NavLink
-        to={`/${to}`}
-        onClick={clickFunc}
-        className={({ isActive }) => classNames(
-          `${className}`,
-          {
-            [`${className}--active`]: isActive,
-          }
+export const IconLink: FC<Props> = memo(({
+  to,
+  src,
+  alt,
+  count,
+  className,
+  clickFunc,
+}) => {
+  return (
+    <NavLink
+      to={`/${to}`}
+      onClick={clickFunc}
+      className={({ isActive }) => classNames(
+        `${className}`, {
+          [`${className}--active`]: isActive,
+        }
+      )}
+     >
+      <div className={`${className}-position`}>
+        <img
+          src={src}
+          alt={alt}
+           className={`${className}-icon`}
+        />
+        {count > 0 && (
+          <div className={`${className}-count`}>
+            {count}
+          </div>
         )}
-      >
-        <div className={`${className}-position`}>
-          <img
-            src={src}
-            alt={alt}
-            className={`${className}-icon`}
-          />
-          {count > 0 && (
-            <div className={`${className}-count`}>
-              {count}
-            </div>
-          )}
-        </div>
-      </NavLink>
-    );
-  },
-);
+      </div>
+    </NavLink>
+  );
+});

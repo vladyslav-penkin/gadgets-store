@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import './ProductPageSkeleton.scss';
-import { Container } from '@/components/Container/Container';
+import { Container } from '@components/Container/Container';
 
 export const ProductPageSkeleton: FC = () => {
   const TechSpecs = {
