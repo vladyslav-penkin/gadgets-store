@@ -52,25 +52,23 @@ export const ShopBy: FC = () => {
     setter(response);
   };
 
-  const getDataFromServer = async() => {
-    setLoading(true);
-    setError(false);
-
-    try {
-      await Promise.all([
-        fetchData(ProductType.PHONES, setPhone),
-        fetchData(ProductType.TABLETS, setTablet),
-        fetchData(ProductType.ACCESSORIES, setAccess),
-      ]);
-
-      setLoading(false);
-    } catch {
-      setError(true);
-    }
-  };
-
   useEffect(() => {
-    getDataFromServer();
+    (async() => {
+      setLoading(true);
+      setError(false);
+  
+      try {
+        await Promise.all([
+          fetchData(ProductType.PHONES, setPhone),
+          fetchData(ProductType.TABLETS, setTablet),
+          fetchData(ProductType.ACCESSORIES, setAccess),
+        ]);
+  
+        setLoading(false);
+      } catch {
+        setError(true);
+      }
+    })();
   }, []);
 
   return (

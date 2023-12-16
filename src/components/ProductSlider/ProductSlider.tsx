@@ -11,9 +11,7 @@ type Props = {
   productImages: string[] | undefined;
 };
 
-export const ProductSlider: FC<Props> = ({
-  productImages = [],
-}) => {
+export const ProductSlider: FC<Props> = ({ productImages = [] }) => {
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
   const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0);
 

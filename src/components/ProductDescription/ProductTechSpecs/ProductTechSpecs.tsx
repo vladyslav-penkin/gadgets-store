@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import './ProductTechSpecs.scss';
 import { Phone } from '@/types/Phone';
 
@@ -7,18 +7,16 @@ type Props = {
 };
 
 export const ProductTechSpecs: FC<Props> = ({ product }) => {
-  const techSpecs = useMemo(() => {
-    return {
-      Screen: product.screen,
-      Resolution: product.resolution,
-      Processor: product.processor,
-      RAM: product.ram,
-      Capacity: product.capacity,
-      Camera: product.camera,
-      Zoom: product.zoom,
-      Cell: product.cell.join(', '),
-    };
-  }, [product]);
+  const techSpecs = {
+    Screen: product.screen,
+    Resolution: product.resolution,
+    Processor: product.processor,
+    RAM: product.ram,
+    Capacity: product.capacity,
+    Camera: product.camera,
+    Zoom: product.zoom,
+    Cell: product.cell.join(', '),
+  };
 
   return (
     <section className="productTechSpecs">

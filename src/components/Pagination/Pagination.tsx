@@ -21,11 +21,7 @@ export const Pagination: FC<Props> = ({ quantity }) => {
   const quantityPages = Math.ceil(quantity / perPage);
 
   const onPageChange = useCallback((page: string) => {
-    updateSearchParams(
-      searchParams,
-      setSearchParams,
-      { page }
-    )
+    updateSearchParams(searchParams, setSearchParams, { page });
   }, [searchParams, setSearchParams]);
 
   const getBulletTitles = useCallback((quantity: number) => {

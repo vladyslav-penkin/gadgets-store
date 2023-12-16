@@ -1,0 +1,11 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+.contactsPage {
+  @extend %flex-center;
+  flex-direction: column;
+  
+  &__title {
+    margin: 0 0 30px 0;
+  }
+}

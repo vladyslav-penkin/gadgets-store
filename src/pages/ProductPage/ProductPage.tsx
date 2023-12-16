@@ -6,7 +6,7 @@ import {
   useCallback,
 } from 'react';
 import './ProductPage.scss';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ProductType } from '@/types/ProductType';
 import { Product } from '@/types/Product';
 import { Phone } from '@/types/Phone';
@@ -26,10 +26,9 @@ type Props = {
   productType: ProductType;
 };
 
-export const ProductPage: FC<Props> = memo(({
-  productType,
-})  => {
+export const ProductPage: FC<Props> = memo(({ productType })  => {
   const [item, setItem] = useState<Phone>();
+  const navigate = useNavigate();
   const [recommended, setRecommended] = useState<Product[]>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isError, setError] = useState<boolean>(false);
@@ -47,15 +46,17 @@ export const ProductPage: FC<Props> = memo(({
         getDetailedInfo(itemCard || ''),
         getRecommendations(itemCard || '')
       ]);
+
       setItem(detailedInfo);
       setRecommended(recommendedInfo);
     } catch {
       setError(true);
+      navigate('*');
     } finally {
       setLoading(false);
       scrollTo(0, 0);
     }
-  }, [itemCard]);
+  }, [itemCard, navigate]);
 
   useEffect(() => {
     getCurrentProduct();
@@ -69,52 +70,51 @@ export const ProductPage: FC<Props> = memo(({
   const product = item
     ? { ...getShortInfo(item), category: productType }
     : null;
-
+  
   const isProductFound = item && product;
 
+  if (isLoading) {
+    return <ProductPageSkeleton />;
+  }
+
   return (
-    <>
-      {isLoading
-        ? <ProductPageSkeleton />
-        : (
-          <Container>
-            <LinkLine titles={linkLine} />
-            <BackToButton to={`/${productType}`} />
-            <h1 className="product__name">
-              {!isError ? product?.name : 'Something went wrong'}
-            </h1>
+    <Container>
+      <LinkLine titles={linkLine} />
+      <BackToButton to={`/${productType}`} />
 
-            {isProductFound && (
-              <>
-                <ProductDetails
-                  product={item}
-                  productShortInfo={product}
-                  productType={productType}
-                />
+      <h1 className="product__name">
+        {!isError ? product?.name : 'Something went wrong'}
+      </h1>
 
-                <div className="product__productDescription">
-                  <ProductDescription title="About">
-                    <ProductAbout
-                      description={item.description}
-                    />
-                  </ProductDescription>
-                  <ProductDescription title="TechSpecs">
-                    <ProductTechSpecs
-                      product={item}
-                    />
-                  </ProductDescription>
-                </div>
+      {isProductFound && (
+        <>
+          <ProductDetails
+            product={item}
+            productShortInfo={product}
+            productType={productType}
+          />
 
-                <HomeSlider
-                  products={recommended}
-                  title={'You may also like'}
-                  isLoading={isLoading}
-                  isError={isError}
-                />
-              </>
-            )}
-          </Container>
-        )}
-    </>
+          <div className="product__productDescription">
+            <ProductDescription title="About">
+              <ProductAbout
+                description={item.description}
+              />
+            </ProductDescription>
+            <ProductDescription title="TechSpecs">
+              <ProductTechSpecs
+                product={item}
+              />
+            </ProductDescription>
+          </div>
+
+          <HomeSlider
+            products={recommended}
+            title={'You may also like'}
+            isLoading={isLoading}
+            isError={isError}
+           />
+        </>
+       )}
+    </Container>
   );
 });

@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import './ProductDetails.scss';
 import { ProductType } from '@/types/ProductType';
 import { ProductColors } from '@components/ProductDetails/ProductColors/ProductColors';
@@ -47,21 +47,17 @@ export const ProductDetails: FC<Props> = ({
   const isAddedToCart = isIncludesInCart(id);
   const isItemFavorite = isIncludesInFavorites(id);
 
-  const toggleCart = useCallback(() => {
-    if (isAddedToCart) {
-      removeFromCart(productShortInfo.phoneId);
-    } else {
-      addToCart({ ...productShortInfo, quantity: 1 })
-    }
-  }, [addToCart, isAddedToCart, productShortInfo, removeFromCart]);
+  const toggleCart = () => {
+    isAddedToCart
+      ? removeFromCart(productShortInfo.phoneId)
+      : addToCart({ ...productShortInfo, quantity: 1 });
+  }
 
-  const toggleFavorite = useCallback(() => {
-    if (isItemFavorite) {
-      removeFromFavorites(productShortInfo.phoneId);
-    } else {
-      addToFavorites(productShortInfo)
-    }
-  }, [addToFavorites, isItemFavorite, productShortInfo, removeFromFavorites]);
+  const toggleFavorite = () => {
+    isItemFavorite
+      ? removeFromFavorites(productShortInfo.phoneId)
+      : addToFavorites(productShortInfo);
+  };
 
   const properties = useMemo(() => {
     return {
@@ -70,7 +66,7 @@ export const ProductDetails: FC<Props> = ({
       Processor: product.processor,
       RAM: product.ram,
     };
-  }, [product]);
+  }, [product.screen, product.resolution, product.processor, product.ram]);
 
   return (
     <article className="productDetails">

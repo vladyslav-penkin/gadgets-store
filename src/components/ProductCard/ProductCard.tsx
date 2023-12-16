@@ -1,8 +1,6 @@
 import {
   FC,
   memo,
-  useCallback,
-  useMemo,
 } from 'react';
 import './ProductCard.scss';
 import { Link } from 'react-router-dom';
@@ -41,34 +39,27 @@ export const ProductCard: FC<Props> = memo(
       isIncludesInFavorites,
     } = useLocaleStorageContext();
   
-    const isAddedToCart = useMemo(() => {
-      return isIncludesInCart(phoneId);
-    }, [isIncludesInCart, phoneId]);
+    const isAddedToCart = isIncludesInCart(phoneId);  
+    const isItemFavorite = isIncludesInFavorites(phoneId);
   
-    const isItemFavorite = useMemo(() => {
-      return isIncludesInFavorites(phoneId);
-    }, [isIncludesInFavorites, phoneId]);
-  
-    const toggleCart = useCallback(() => {
+    const toggleCart = () => {
       isAddedToCart
          ? removeFromCart(phoneId)
         : addToCart({ ...product, quantity: 1 });
-    }, [addToCart, isAddedToCart, phoneId, product, removeFromCart]);
+    };
   
-    const toggleFavorites = useCallback(() => {
+    const toggleFavorites = () => {
       isItemFavorite
         ? removeFromFavorites(phoneId)
         : addToFavorites(product);
-    }, [addToFavorites, isItemFavorite, phoneId, product, removeFromFavorites]);
+    };
 
     const inces = screen.split(' ')[0];
-    const characteristics = useMemo(() => {
-      return {
-        Screen: inces,
-        Capacity: capacity,
-        RAM: ram,
-      };
-    }, [inces, capacity, ram]);
+    const characteristics = {
+      Screen: inces,
+      Capacity: capacity,
+      RAM: ram,
+    };
   
     return (
       <div className="card">

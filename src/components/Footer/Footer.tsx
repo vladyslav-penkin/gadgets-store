@@ -24,10 +24,7 @@ export const Footer: FC = () => {
             content="GITHUB"
           />
           <li className="footer__item">
-            <Link
-              to="/contacts"
-              className="footer__link"
-            >
+            <Link to="/contacts" className="footer__link">
               CONTACTS
             </Link>
           </li>

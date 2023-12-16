@@ -44,9 +44,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const LocaleStorageProvider: FC<Props> = ({
-  children,
-}) => {
+export const LocaleStorageProvider: FC<Props> = ({ children }) => {
   const [
     cartItems,
     addToCart,

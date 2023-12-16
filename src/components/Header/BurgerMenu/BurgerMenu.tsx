@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
 import './BurgerMenu.scss';
-import { useTheme } from '@/hooks/useTheme';
+import { useTheme } from '@hooks/useTheme';
 import {
   useLocaleStorageContext,
-} from '@/hooks/useLocaleStorageContext';
+} from '@hooks/useLocaleStorageContext';
 import { IconLink } from '@components/Header/IconLink/IconLink';
 import { HeaderLink } from '@components/Header/HeaderLink';
 import { NavList } from '@/types/NavList';
@@ -14,10 +14,7 @@ type Props = {
   toggleMenu: () => void;
 };
 
-export const BurgerMenu: FC<Props> = memo(({
-  isOpen,
-  toggleMenu,
-}) => {
+export const BurgerMenu: FC<Props> = memo(({ isOpen, toggleMenu }) => {
 
   const { themeIcons: {
     favoriteIcon,

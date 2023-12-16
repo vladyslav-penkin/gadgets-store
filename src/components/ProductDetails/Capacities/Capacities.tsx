@@ -9,10 +9,7 @@ type Props = {
   capacities: string[];
 };
 
-export const Capacities: FC<Props> = ({
-  productType,
-  capacities,
-}) => {
+export const Capacities: FC<Props> = ({ productType, capacities }) => {
   const { itemCard: itemCardParams } = useParams();
 
   return (

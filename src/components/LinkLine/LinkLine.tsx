@@ -23,15 +23,14 @@ export const LinkLine: FC<Props> = memo(({ titles }) => {
 
   return (
     <section className="link-line">
-      <NavLink to="/"
-        className="link-line__link"
-      >
+      <NavLink to="/" className="link-line__link">
         <img
           src={homeIcon}
           alt="home"
           className="link-line__arrow"
         />
       </NavLink>
+
       {titles.map(({ title, link }) => (
         <>
           <img

@@ -3,7 +3,6 @@ import {
   useState,
   useEffect,
   useMemo,
-  useCallback,
 } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './ProductsPage.scss';
@@ -22,9 +21,7 @@ type Props = {
   productType: ProductType;
 };
 
-export const ProductsPage: FC<Props> = ({
-  productType
-}) => {
+export const ProductsPage: FC<Props> = ({ productType }) => {
   const [productInfo, setProductInfo] = useState<RequestParamsResult>({
     pages: 1,
     products: [],
@@ -43,7 +40,7 @@ export const ProductsPage: FC<Props> = ({
   const sorts = useMemo(() => {
     return [SortBy.NAME, SortBy.NEW, SortBy.OLD, SortBy.LOW, SortBy.HIGHT];
   }, []);
-  
+
   const name = useMemo(() => {
     switch (productType) {
       case ProductType.PHONES:
@@ -60,25 +57,25 @@ export const ProductsPage: FC<Props> = ({
 
   const linkLine = [{ title: productType, link: `/${productType}` }];
 
-  const onSortChange = useCallback((sort: string) => {
+  const onSortChange = (sort: string) => {
     updateSearchParams(searchParams, setSearchParams, { sort });
-  }, [searchParams, setSearchParams]);
+  };
 
-  const onPerPageChange = useCallback((perPage: string) => {
+  const onPerPageChange = (perPage: string) => {
     updateSearchParams(searchParams, setSearchParams, { perPage });
-  }, [searchParams, setSearchParams]);
+  };
 
-  const debounce = useCallback((
+  const debounce = (
     callback: (query: string) => void,
     delay: number,
-    ) => {
-      let timerId: NodeJS.Timeout;
+  ) => {
+    let timerId: NodeJS.Timeout;
 
-      return (args: string) => {
-        clearInterval(timerId);
-        timerId = setTimeout(callback, delay, args);
-      };
-    }, []);
+    return (args: string) => {
+      clearInterval(timerId);
+      timerId = setTimeout(callback, delay, args);
+    };
+  };
 
   const onQueryChange = debounce((query: string) => {
     updateSearchParams(

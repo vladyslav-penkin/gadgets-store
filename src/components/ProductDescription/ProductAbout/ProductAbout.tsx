@@ -6,9 +6,7 @@ type Props = {
   description: ProductDescription[];
 };
 
-export const ProductAbout: FC<Props> = ({
-  description,
-}) => {
+export const ProductAbout: FC<Props> = ({ description }) => {
   return (
     <section className="productAbout">
       {description.map(({ title, text }) => (

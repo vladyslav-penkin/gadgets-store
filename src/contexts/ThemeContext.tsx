@@ -71,9 +71,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const ThemeProvider: FC<Props> = ({
-  children
-}) => {
+export const ThemeProvider: FC<Props> = ({ children }) => {
   const [theme, setTheme] = useLocaleStorage<Theme>(
     'theme',
     'dark',

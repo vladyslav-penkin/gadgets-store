@@ -23,10 +23,7 @@ export const PageNotFound: FC<Props> = ({
         src={image}
         alt={title}
       />
-      <Link
-        to={`/${link}`}
-        className="pageNotFound__button"
-      >
+      <Link to={`/${link}`} className="pageNotFound__button">
         {button}
       </Link>
     </section>

@@ -21,7 +21,6 @@ export const BackToButton: FC<Props> = ({ to }) => {
           alt="back"
           className="backToButton__image"
         />
-
         Back
       </NavLink>
     </section>
