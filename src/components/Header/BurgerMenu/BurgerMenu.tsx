@@ -15,19 +15,19 @@ type Props = {
 };
 
 export const BurgerMenu: FC<Props> = memo(({ isOpen, toggleMenu }) => {
-
-  const { themeIcons: {
-    favoriteIcon,
-    shoppingBagIcon,
-  }} = useTheme();
+  const {
+    themeIcons: {
+      favoriteIcon,
+      shoppingBagIcon,
+    },
+  } = useTheme();
   const { cartItems, favorites } = useLocaleStorageContext();
   const category = Object.entries(NavList);
   
   return (
     <menu className={classNames(
-      'menu', {
-        'menu--opened': isOpen,
-       }
+      'menu',
+      { 'menu--opened': isOpen }
     )}>
       <div className="menu__content">
         <ul className="menu__content-list">

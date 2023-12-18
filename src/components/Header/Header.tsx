@@ -16,6 +16,7 @@ import { MenuToggler } from '@components/Header/MenuToggler/MenuToggler';
 
 export const Header: FC = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(false); 
+  const { cartItems, favorites } = useLocaleStorageContext();
   const {
     themeIcons: {
       logoPath,
@@ -23,7 +24,6 @@ export const Header: FC = () => {
       shoppingBagIcon,
     }
   } = useTheme();
-  const { cartItems, favorites } = useLocaleStorageContext();
 
   const toggleMenu = () => {
     setIsBurgerOpen(prev => !prev);

@@ -2,8 +2,7 @@ import {
   FC,
   memo,
   useState,
-  useEffect, 
-  useCallback,
+  useEffect,
 } from 'react';
 import './ProductPage.scss';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -21,6 +20,7 @@ import { ProductAbout } from '@components/ProductDescription/ProductAbout/Produc
 import { ProductTechSpecs } from '@components/ProductDescription/ProductTechSpecs/ProductTechSpecs';
 import { HomeSlider } from '@components/Slider/Slider';
 import { ProductPageSkeleton } from '@pages/ProductPageSkeleton/ProductPageSkeleton';
+import { useFetch } from '@hooks/useFetch';
 
 type Props = {
   productType: ProductType;
@@ -30,37 +30,28 @@ export const ProductPage: FC<Props> = memo(({ productType })  => {
   const [item, setItem] = useState<Phone>();
   const navigate = useNavigate();
   const [recommended, setRecommended] = useState<Product[]>([]);
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [isError, setError] = useState<boolean>(false);
   const { itemCard } = useParams();
 
-  const getCurrentProduct = useCallback(async () => {
-    setLoading(true);
-    setError(false);
+  const { isLoading, isError } = useFetch(async () => {
+    const [
+      detailedInfo,
+      recommendedInfo,
+    ] = await Promise.all([
+      getDetailedInfo(itemCard || ''),
+      getRecommendations(itemCard || '')
+    ]);
 
-    try {
-      const [
-        detailedInfo,
-        recommendedInfo,
-      ] = await Promise.all([
-        getDetailedInfo(itemCard || ''),
-        getRecommendations(itemCard || '')
-      ]);
+    setItem(detailedInfo);
+    setRecommended(recommendedInfo);
+  }, [itemCard]);
 
-      setItem(detailedInfo);
-      setRecommended(recommendedInfo);
-    } catch {
-      setError(true);
-      navigate('*');
-    } finally {
-      setLoading(false);
-      scrollTo(0, 0);
-    }
-  }, [itemCard, navigate]);
+  if (isError) {
+    navigate('*');
+  }
 
   useEffect(() => {
-    getCurrentProduct();
-  }, [getCurrentProduct, itemCard]);
+    scrollTo(0, 0);
+  }, [itemCard]);
 
   const linkLine = [
     { title: productType, link: `/${productType}` },

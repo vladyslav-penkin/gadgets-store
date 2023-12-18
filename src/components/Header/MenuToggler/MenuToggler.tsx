@@ -12,9 +12,8 @@ export const MenuToggler: FC<Props> = ({ isOpen, toggleMenu }) => {
     <button
       className={classNames(
         'header__burger',
-        'burger', {
-          'burger--opened': isOpen,
-        }
+        'burger',
+        { 'burger--opened': isOpen }
       )}
       onClick={toggleMenu}
     >

@@ -2,7 +2,6 @@ import {
   FC,
   useState,
   useEffect,
-  useCallback,
 } from 'react';
 import './HomePage.scss';
 import { BigSlider } from '@components/BigSlider/BigSlider';
@@ -11,36 +10,24 @@ import { getNew, getHot } from '@api/requests';
 import { HomeSlider } from '@components/Slider/Slider';
 import { ShopBy } from '@components/ShopBy/ShopBy';
 import { Container } from '@components/Container/Container';
+import { useFetch } from '@hooks/useFetch';
 
 export const HomePage: FC = () => {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
   const [hotProducts, setHotProducts] = useState<Product[]>([]);
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [isError, setError] = useState<boolean>(false);
+  const { isLoading, isError } = useFetch(async () => {
+    const [
+      newProducts,
+      hotProducts,
+    ] = await Promise.all([getNew(), getHot()]);
 
-  const getProducts = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(false);
-
-      const [
-        newProducts,
-        hotProducts,
-      ] = await Promise.all([getNew(), getHot()]);
-
-      setNewProducts(newProducts);
-      setHotProducts(hotProducts);
-      setLoading(false);
-    } catch {
-      setError(true);
-    } finally {
-      window.scrollTo(0, 0);
-    }
+    setNewProducts(newProducts);
+    setHotProducts(hotProducts);
   }, []);
 
   useEffect(() => {
-    getProducts();
-  }, [getProducts]);
+    window.scrollTo(0 ,0);
+  }, []);
 
   return (
     <article className="HomePage">

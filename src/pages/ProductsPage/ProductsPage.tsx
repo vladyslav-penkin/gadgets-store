@@ -16,6 +16,7 @@ import { updateSearchParams } from '@utils/searchHelper';
 import { ProductsList } from '@components/ProductsList/ProductsList';
 import { Search } from '@components/Search/Search';
 import { Pagination } from '@components/Pagination/Pagination';
+import { useFetch } from '@hooks/useFetch';
 
 type Props = {
   productType: ProductType;
@@ -28,8 +29,6 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
     models: 0,
   });
   const isHasProducts = productInfo.products.length > 0;
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [isError, setError] = useState<boolean>(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const sort = searchParams.get('sort') || SortBy.NEW;
@@ -40,6 +39,18 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
   const sorts = useMemo(() => {
     return [SortBy.NAME, SortBy.NEW, SortBy.OLD, SortBy.LOW, SortBy.HIGHT];
   }, []);
+
+  const { isLoading, isError } = useFetch(async () => {
+    setProductInfo(
+      await getProducts(
+        +perPage,
+        +page,
+        [productType],
+        sorts.find((by: SortBy) => by === sort) || SortBy.NEW,
+        query
+      )
+    );
+  }, [page, perPage, productType, query, searchParams, sort, sorts]);
 
   const name = useMemo(() => {
     switch (productType) {
@@ -90,31 +101,8 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
   }
 
   useEffect(() => {
-    (async () => {
-      setLoading(true);
-      setError(false);
-
-      try {
-        setProductInfo(
-          await getProducts(
-            +perPage,
-            +page,
-            [productType],
-            sorts.find((by: SortBy) => by === sort) || SortBy.NEW,
-            query
-          )
-        )
-      } catch {
-        setError(true);
-      } finally {
-        setLoading(false);
-        scrollTo(0, 0);
-      }
-    })();
-  }, [page, perPage, productType, query, searchParams, sort, sorts]);
-
-  useEffect(() => {
     searchParams.delete('page');
+    window.scrollTo(0, 0);
   }, [searchParams]);
 
   return (

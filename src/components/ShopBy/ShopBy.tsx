@@ -1,7 +1,6 @@
 import {
   FC,
   useState,
-  useEffect,
   SetStateAction,
 } from 'react';
 import './ShopBy.scss';
@@ -15,13 +14,12 @@ import {
   RequestParamsResult,
 } from '@api/requests';
 import { ProductType } from '@/types/ProductType';
+import { useFetch } from '@/hooks/useFetch';
 
 export const ShopBy: FC = () => {
   const [phone, setPhone] = useState<RequestParamsResult>();
   const [tablet, setTablet] = useState<RequestParamsResult>();
   const [access, setAccess] = useState<RequestParamsResult>();
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [isError, setError] = useState<boolean>(false);
 
   const categories = [
     { 
@@ -52,23 +50,12 @@ export const ShopBy: FC = () => {
     setter(response);
   };
 
-  useEffect(() => {
-    (async() => {
-      setLoading(true);
-      setError(false);
-  
-      try {
-        await Promise.all([
-          fetchData(ProductType.PHONES, setPhone),
-          fetchData(ProductType.TABLETS, setTablet),
-          fetchData(ProductType.ACCESSORIES, setAccess),
-        ]);
-  
-        setLoading(false);
-      } catch {
-        setError(true);
-      }
-    })();
+  const { isLoading, isError } = useFetch(async () => {
+    await Promise.all([
+      fetchData(ProductType.PHONES, setPhone),
+      fetchData(ProductType.TABLETS, setTablet),
+      fetchData(ProductType.ACCESSORIES, setAccess),
+    ]);
   }, []);
 
   return (
