@@ -30,18 +30,13 @@ export const FavoritesPage: FC = () => {
             />
            ) : (
             <>
-              <h1 className="favoritesPage__title">
-                Favorites
-              </h1>
+              <h1 className="favoritesPage__title">Favorites</h1>
               <span className="favoritesPage__total">
                 {favorites.length} items
               </span>
               <section className="favoritesPage__products">
                 {favorites.map((favorite: Product) => (
-                  <ProductCard
-                    key={favorite.id}
-                    product={favorite}
-                  />
+                  <ProductCard key={favorite.id} product={favorite} />
                 ))}
               </section>
             </>

@@ -12,10 +12,7 @@ export const HomePage: FC = () => {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
   const [hotProducts, setHotProducts] = useState<Product[]>([]);
   const { isLoading, isError } = useFetch(async () => {
-    const [
-      newProducts,
-      hotProducts,
-    ] = await Promise.all([getNew(), getHot()]);
+    const [newProducts, hotProducts] = await Promise.all([getNew(), getHot()]);
 
     setNewProducts(newProducts);
     setHotProducts(hotProducts);

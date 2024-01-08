@@ -1,27 +1,26 @@
-# React + TypeScript + Vite
+# 💻 Gadgets Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img src="./public/banner.png">
+</p>
 
-Currently, two official plugins are available:
+Welcome to the Nice Gadgets Store! This web application is designed to provide users with an interactive platform to browse, search, and purchase various gadgets. Whether you're looking for smartphones, tablets, smartwatches, or other electronic devices, this application has got you covered.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Product Catalog
+The application offers a wide range of gadgets of different categories with detailed information such as product descriptions, specifications, pricing, and images.
 
-- Configure the top-level `parserOptions` property like this:
+### Search and Filtering
+Users can easily search for specific gadgets by names or apply filtering & sorting options based on price, release date or category.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+### Shopping Cart
+Users can add products to their shopping cart, view the contents, and manage quantities before proceeding to checkout.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Favorites
+Users can add some products to their wishlist.
+
+## Preview
+
+[**🔗Click here!**](https://vladyslav-penkin.github.io/gadgets-store/#/)
