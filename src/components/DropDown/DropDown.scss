@@ -30,7 +30,6 @@
     opacity: 0;
     transition: 0.2s ease;
     pointer-events: none;
-    box-shadow: 0 0 3px var(--white-color);
 
     &--active {
       opacity: 1;
