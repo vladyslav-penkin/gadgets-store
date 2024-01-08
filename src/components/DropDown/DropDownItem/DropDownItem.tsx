@@ -6,18 +6,13 @@ type Props = {
   onClick: MouseEventHandler<HTMLLIElement>;
 };
 
-export const DropDownItem: FC<Props> = memo(
-  ({
-    item,
-    onClick
-  }) => { 
-    return (
-      <li 
-        className="dropdown__content-item"
-        onClick={onClick}
-      >
-        {item}
-      </li>
-    );
-  },
-);
+export const DropDownItem: FC<Props> = memo(({
+  item,
+  onClick
+}) => { 
+  return (
+    <li className="dropdown__content-item" onClick={onClick}>
+      {item}
+    </li>
+  );
+});

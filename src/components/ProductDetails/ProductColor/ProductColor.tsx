@@ -16,9 +16,8 @@ export const ProductColor: FC<Props> = ({ pathname, color }) => {
       to={{ pathname }}
       style={{ backgroundColor: colors[color as Colors] }}
       className={({ isActive }) => classNames(
-        'colors__circles', {
-          'colors__circles--active': isActive,
-        }
+        'colors__circles',
+        { 'colors__circles--active': isActive }
       )}
     ></NavLink>
   );

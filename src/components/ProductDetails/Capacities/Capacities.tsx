@@ -1,44 +1,28 @@
 import { FC } from 'react';
 import './Capacities.scss';
-import { NavLink, useParams } from 'react-router-dom';
 import { ProductType } from '@/types/ProductType';
-import classNames from 'classnames';
+import { Capacity } from '../Capacity/Capacity';
 
 type Props = {
   productType: ProductType;
   capacities: string[];
+  color: string;
+  namespaceId: string;
 };
 
-export const Capacities: FC<Props> = ({ productType, capacities }) => {
-  const { itemCard: itemCardParams } = useParams();
-
+export const Capacities: FC<Props> = ({ productType, capacities, color, namespaceId }) => {
   return (
     <section className="capacities">
       {capacities.map((cap: string) => {
-        const capacityLink = (itemCardParams || '')
-          .split('-')
-          .map((item: string) => (
-            item.includes('gb')
-            || item.includes('tb')
-            || item.includes('mm')
-              ? cap
-              : item
-          ))
-          .join('-')
-          .toLowerCase();
+        const currentColor = color.split(' ').join('-');
+        const capacityLink = `${namespaceId}-${cap}-${currentColor}`.toLowerCase();
         
         return (
-          <NavLink
+          <Capacity
             key={cap}
             to={`/${productType}/${capacityLink}`}
-            className={({ isActive }) => classNames(
-              'capacity__button', {
-                'capacity__button--active': isActive,
-              }
-            )}
-          >
-            {cap}
-          </NavLink>
+            capacity={cap}
+          />
         );
       })}
     </section>

@@ -2,10 +2,10 @@ import { FC, useEffect } from 'react';
 import './FavoritesPage.scss';
 import { Container } from '@components/Container/Container';
 import { LinkLine } from '@components/LinkLine/LinkLine';
-import { useLocaleStorageContext } from '@hooks/useLocaleStorageContext';
-import { Product } from '@/types/Product';
 import { ProductCard } from '@components/ProductCard/ProductCard';
 import { PageNotFound } from '@components/PageNotFound/PageNotFound';
+import { useLocaleStorageContext } from '@hooks/useLocaleStorageContext';
+import { Product } from '@/types/Product';
 import favoritesEmpty from '@assets/icons/favortiesEmpty.webp';
 
 export const FavoritesPage: FC = () => {

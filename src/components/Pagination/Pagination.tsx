@@ -1,8 +1,4 @@
-import { 
-  FC,
-  useMemo,
-  useCallback,
-} from 'react';
+import { FC, useCallback } from 'react';
 import './Pagination.scss';
 import { useSearchParams } from 'react-router-dom';
 import { updateSearchParams } from '@utils/searchHelper';
@@ -51,13 +47,9 @@ export const Pagination: FC<Props> = ({ quantity }) => {
     return visibleBullets.slice(currentPage - 2, currentPage + 2);
   }, []);
 
-  const allVisibleBullets = useMemo(() => {
-    return getBulletTitles(quantityPages);
-  }, [getBulletTitles, quantityPages]);
+  const allVisibleBullets = getBulletTitles(quantityPages);
 
-  const visibleBullets = useMemo(() => {
-    return getVisibleBullets(page, allVisibleBullets);
-  }, [allVisibleBullets, getVisibleBullets, page]);
+  const visibleBullets = getVisibleBullets(page, allVisibleBullets);
 
   return (
     <article className="pagination">

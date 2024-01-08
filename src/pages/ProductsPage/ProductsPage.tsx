@@ -1,7 +1,6 @@
 import {
   FC,
   useState,
-  useEffect,
   useMemo,
 } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -12,11 +11,11 @@ import { LinkLine } from '@components/LinkLine/LinkLine';
 import { Container } from '@components/Container/Container';
 import { getProducts, RequestParamsResult } from '@api/requests';
 import { DropDown } from '@components/DropDown/DropDown';
-import { updateSearchParams } from '@utils/searchHelper';
 import { ProductsList } from '@components/ProductsList/ProductsList';
 import { Search } from '@components/Search/Search';
 import { Pagination } from '@components/Pagination/Pagination';
 import { useFetch } from '@hooks/useFetch';
+import { updateSearchParams } from '@utils/searchHelper';
 
 type Props = {
   productType: ProductType;
@@ -36,21 +35,27 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
   const page = searchParams.get('page') || '1';
   const query = searchParams.get('query') || '';
 
+  const arrayOfItems = ['8', '16', '32', '64'];
   const sorts = useMemo(() => {
     return [SortBy.NAME, SortBy.NEW, SortBy.OLD, SortBy.LOW, SortBy.HIGHT];
   }, []);
 
-  const { isLoading, isError } = useFetch(async () => {
-    setProductInfo(
-      await getProducts(
-        +perPage,
-        +page,
-        [productType],
-        sorts.find((by: SortBy) => by === sort) || SortBy.NEW,
-        query
-      )
-    );
-  }, [page, perPage, productType, query, searchParams, sort, sorts]);
+  const { isLoading, isError } = useFetch(
+    async () => {
+      setProductInfo(
+        await getProducts(
+          +perPage,
+          +page,
+          [productType],
+          sorts.find((by: SortBy) => by === sort) || SortBy.NEW,
+          query
+        )
+      );
+    },
+    () => {},
+    () =>  window.scrollTo(0, 0),
+    [page, perPage, productType, searchParams, query, sort, sorts],
+  );
 
   const name = useMemo(() => {
     switch (productType) {
@@ -64,22 +69,18 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
         return '';
     }
   }, [productType]);
-  const arrayOfItems = ['8', '16', '32', '64'];
 
   const linkLine = [{ title: productType, link: `/${productType}` }];
 
   const onSortChange = (sort: string) => {
-    updateSearchParams(searchParams, setSearchParams, { sort });
+    updateSearchParams(searchParams, setSearchParams, { sort, page: null });
   };
 
   const onPerPageChange = (perPage: string) => {
-    updateSearchParams(searchParams, setSearchParams, { perPage });
+    updateSearchParams(searchParams, setSearchParams, { perPage, page: null });
   };
 
-  const debounce = (
-    callback: (query: string) => void,
-    delay: number,
-  ) => {
+  const debounce = (callback: (query: string) => void, delay: number) => {
     let timerId: NodeJS.Timeout;
 
     return (args: string) => {
@@ -92,7 +93,7 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
     updateSearchParams(
       searchParams,
       setSearchParams,
-      { query: query.trim().toLowerCase() || null }
+      { query: query.trim().toLowerCase() || null, page: null }
     )
   }, 1000);
 
@@ -100,18 +101,13 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
     searchParams.delete('query');
   }
 
-  useEffect(() => {
-    searchParams.delete('page');
-    window.scrollTo(0, 0);
-  }, [searchParams]);
-
   return (
     <article className="productsPage">
       <Container>
         <LinkLine titles={linkLine} />
         <h1 className="productsPage__title">{name}</h1>
 
-        <p className="productsPage__models-count">
+        <p className="productsPage__modelsCount">
           {`${productInfo?.models || 0} models`}
         </p>
         
@@ -152,7 +148,6 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
           <ProductsList
             products={productInfo?.products}
             isLoading={isLoading}
-            isError={isError}
           />
         )}
         {isHasProducts && <Pagination quantity={productInfo.models} />}

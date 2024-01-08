@@ -26,76 +26,72 @@ const sortByNames = {
   [SortBy.OLD]: 'Old first',
 };
 
-export const DropDown: FC<Props> = memo(
-  ({
-    variables,
-    searchParam,
-    onChange,
-    defaultValue = 0,
-  }) => {
-    const [stateDropDown, setStateDropDown] = useState<string>(
-      searchParam || variables[defaultValue]
-    );
-    const [isOpen, setOpen] = useState<boolean>(false);
-    const dropDownRef = useRef<HTMLDivElement | null>(null);
+export const DropDown: FC<Props> = memo(({
+  variables,
+  searchParam,
+  onChange,
+  defaultValue = 0,
+}) => {
+  const [stateDropDown, setStateDropDown] = useState<string>(
+    searchParam || variables[defaultValue]
+  );
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const dropDownRef = useRef<HTMLDivElement | null>(null);
   
-    const handleChange = (item: string) => {
-      setOpen(false);
-      setStateDropDown(item);
-      onChange(item);
+  const handleChange = (item: string) => {
+    setOpen(false);
+    setStateDropDown(item);
+    onChange(item);
+  };
+  
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropDownRef.current
+          && !dropDownRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
     };
   
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (dropDownRef.current
-            && !dropDownRef.current.contains(event.target as Node)) {
-          setOpen(false);
-        }
-      };
+    document.addEventListener('mousedown', handleClickOutside);
   
-      document.addEventListener('mousedown', handleClickOutside);
-  
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      }
-    }, []);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, []);
 
-    useEffect(() => {
-      setStateDropDown(searchParam);
-    }, [searchParam]);
+  useEffect(() => {
+    setStateDropDown(searchParam);
+  }, [searchParam]);
   
-    return (
-      <div
+  return (
+    <div
+      className={classNames(
+        'dropdown',
+        { 'dropdown--opened': isOpen }
+      )}
+      ref={dropDownRef}
+    >
+      <DropDownButton
+        onClick={() => setOpen(!isOpen)}
+        stateDropDown={
+          sortByNames[stateDropDown as SortBy] || stateDropDown
+        }
+        isOpen={isOpen}
+      />
+      <ul
         className={classNames(
-          'dropdown', {
-            'dropdown--opened': isOpen,
-          }
+          'dropdown__content',
+          { 'dropdown__content--active': isOpen },
         )}
-        ref={dropDownRef}
       >
-        <DropDownButton
-          onClick={() => setOpen(!isOpen)}
-          stateDropDown={
-            sortByNames[stateDropDown as SortBy] || stateDropDown
-          }
-          isOpen={isOpen}
-        />
-        <ul
-          className={classNames(
-            'dropdown__content', {
-              'dropdown__content--active': isOpen,
-            },
-          )}
-        >
-          {variables.map((item) => (
-            <DropDownItem
-              key={item}
-              item={sortByNames[item as SortBy] || item}
-              onClick={() => handleChange(item)}
-            />
-          ))}
-        </ul>
-      </div>
-    );
-  },
-);
+        {variables.map((item) => (
+          <DropDownItem
+            key={item}
+            item={sortByNames[item as SortBy] || item}
+            onClick={() => handleChange(item)}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+});

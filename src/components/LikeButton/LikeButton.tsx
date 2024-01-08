@@ -1,11 +1,8 @@
-import {
-  FC,
-  memo,
-} from 'react';
+import { FC, memo } from 'react';
 import './LikeButton.scss';
+import classNames from 'classnames';
 import { useTheme } from '@hooks/useTheme';
 import likeIconFilled from '@assets/icons/favoritesRed.svg';
-import classNames from 'classnames';
 
 type Props = {
   isItemFavorite: boolean;
@@ -18,23 +15,17 @@ export const LikeButton: FC<Props> = memo(({ isItemFavorite, onLike }) => {
   return (
     <button
       className={classNames(
-        'card__like-button', {
-          'card__like-button--pressed': isItemFavorite,
-        }
+        'card__like-button',
+        { 'card__like-button--pressed': isItemFavorite }
       )}
       onClick={onLike}
     >
       <img
-        src={
-          isItemFavorite
-            ? likeIconFilled
-            : favoriteIcon
-        }
+        src={isItemFavorite ? likeIconFilled : favoriteIcon}
         alt="favoriteItem"
         className={classNames(
-          'card__like-icon', {
-            'card__like-icon--pressed': isItemFavorite
-           }
+          'card__like-icon',
+          { 'card__like-icon--pressed': isItemFavorite }
         )}
       />
     </button>

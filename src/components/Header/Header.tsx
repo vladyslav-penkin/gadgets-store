@@ -2,7 +2,7 @@ import {
   FC,
   useState,
 } from 'react';
-import '@components/Header/Header.scss';
+import './Header.scss';
 import {
   useLocaleStorageContext,
 } from '@hooks/useLocaleStorageContext';
@@ -25,6 +25,11 @@ export const Header: FC = () => {
     }
   } = useTheme();
 
+  const linkItems = [
+    { to: 'favorites', src: favoriteIcon, alt: 'favorites', count: favorites.length, className: 'header__case' },
+    { to: 'cart', src: shoppingBagIcon, alt: 'cart', count: cartItems.length, className: 'header__case' },
+  ]
+
   const toggleMenu = () => {
     setIsBurgerOpen(prev => !prev);
   };
@@ -42,20 +47,15 @@ export const Header: FC = () => {
         <section className="header__right-side">
           <ThemeButton />
 
-          <IconLink
-            to="favorites"
-            src={favoriteIcon}
-            alt="IconLink-favorites"
-            count={favorites.length}
-            className='header__case'
-          />
-          <IconLink
-            to="cart"
-            src={shoppingBagIcon}
-            alt="IconLink-cart"
-            count={cartItems.length}
-            className='header__case'
-          />
+          {linkItems.map(({ to, src, alt, count, className }) => (
+            <IconLink
+              to={to}
+              src={src}
+              alt={alt}
+              count={count}
+              className={className}
+            />
+          ))}
           <MenuToggler
             isOpen={isBurgerOpen}
             toggleMenu={toggleMenu}

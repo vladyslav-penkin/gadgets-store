@@ -11,13 +11,9 @@ export const ProductAbout: FC<Props> = ({ description }) => {
     <section className="productAbout">
       {description.map(({ title, text }) => (
         <>
-          <p className="productAbout__header" key={title}>
-            {title}
-          </p>
+          <p className="productAbout__header" key={title}>{title}</p>
           {text.map((title: string) => (
-            <p className="productAbout__title" key={title}>
-              {title}
-            </p>
+            <p className="productAbout__title" key={title}>{title}</p>
           ))}
         </>
       ))}

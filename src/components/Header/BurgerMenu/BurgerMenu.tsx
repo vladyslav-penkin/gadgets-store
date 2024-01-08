@@ -1,5 +1,7 @@
 import { FC, memo } from 'react';
 import './BurgerMenu.scss';
+import classNames from 'classnames';
+
 import { useTheme } from '@hooks/useTheme';
 import {
   useLocaleStorageContext,
@@ -7,7 +9,6 @@ import {
 import { IconLink } from '@components/Header/IconLink/IconLink';
 import { HeaderLink } from '@components/Header/HeaderLink';
 import { NavList } from '@/types/NavList';
-import classNames from 'classnames';
 
 type Props = {
   isOpen: boolean;
@@ -15,14 +16,14 @@ type Props = {
 };
 
 export const BurgerMenu: FC<Props> = memo(({ isOpen, toggleMenu }) => {
-  const {
-    themeIcons: {
-      favoriteIcon,
-      shoppingBagIcon,
-    },
-  } = useTheme();
-  const { cartItems, favorites } = useLocaleStorageContext();
   const category = Object.entries(NavList);
+  const { themeIcons: { favoriteIcon, shoppingBagIcon } } = useTheme();
+  const { cartItems, favorites } = useLocaleStorageContext();
+
+  const linkItems = [
+    { to: 'favorites', src: favoriteIcon, alt: 'favorites', count: favorites.length, className: 'menu__case' },
+    { to: 'cart', src: shoppingBagIcon, alt: 'cart', count: cartItems.length, className: 'menu__case' },
+  ]
   
   return (
     <menu className={classNames(
@@ -47,22 +48,16 @@ export const BurgerMenu: FC<Props> = memo(({ isOpen, toggleMenu }) => {
         </ul>
       </div>
       <div className="menu__footer">
-        <IconLink
-          to="favorites"
-          src={favoriteIcon}
-          alt="IconLink-favorites"
-          count={favorites.length}
-          className='menu__case'
-          clickFunc={toggleMenu}
-        />
-        <IconLink
-          to="cart"
-          src={shoppingBagIcon}
-          alt="IconLink-cart"
-          count={cartItems.length}
-          className='menu__case'
-          clickFunc={toggleMenu}
-        />
+        {linkItems.map(({ to, src, alt, count, className }) => (
+          <IconLink
+            to={to}
+            src={src}
+            alt={alt}
+            count={count}
+            className={className}
+            clickFunc={toggleMenu}
+          />
+        ))}
       </div>
     </menu>
   );

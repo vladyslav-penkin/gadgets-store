@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import '@components/Slider/Slider.scss';
+import './Slider.scss';
 import { useTheme } from '@hooks/useTheme';
 import { Product } from '@/types/Product';
 import Slider from 'react-slick';
@@ -91,7 +91,7 @@ export const HomeSlider: FC<Props> = ({
           <Slider {...settingsSlider}>
             {[1, 2, 3, 4, 5, 6].map((product) => (
               <div className="slider__item" key={product}>
-                <ProductCardSkeleton isError={isError} />
+                <ProductCardSkeleton />
               </div>
             ))}
           </Slider>

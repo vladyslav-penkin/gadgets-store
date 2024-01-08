@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import './LinkLine.scss';
-import { LinkLineType } from '@/types/LinkLineType';
 import classNames from 'classnames';
+import { LinkLineType } from '@/types/LinkLineType';
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '@hooks/useTheme';
 
@@ -41,15 +41,12 @@ export const LinkLine: FC<Props> = memo(({ titles }) => {
           <NavLink
             to={link}
             className={({ isActive }) => classNames(
-              'link-line__link', {
-                'link-line__link--active': isActive,
-              }
+              'link-line__link',
+              { 'link-line__link--active': isActive }
             )}
             end
           >
-            <p className="link-line__title">
-              {capitalize(title || '')}
-            </p>
+            <p className="link-line__title">{capitalize(title || '')}</p>
           </NavLink>
         </>
       ))}

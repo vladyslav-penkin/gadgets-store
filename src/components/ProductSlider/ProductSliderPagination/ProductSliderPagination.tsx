@@ -21,9 +21,7 @@ export const ProductSliderPagination: FC<Props> = ({
     >
       {images.map((productImage: string, index: number) => {
         const isActiveBullet = activeSlideIndex === index;
-        const onBulletClick = () => {
-          swiperRef?.slideTo(index);
-        };
+        const onBulletClick = () => swiperRef?.slideTo(index);
 
         return (
           <ProductSliderBullet

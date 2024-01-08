@@ -44,7 +44,7 @@ export const ProductCard: FC<Props> = memo(
   
     const toggleCart = () => {
       isAddedToCart
-         ? removeFromCart(phoneId)
+        ? removeFromCart(phoneId)
         : addToCart({ ...product, quantity: 1 });
     };
   

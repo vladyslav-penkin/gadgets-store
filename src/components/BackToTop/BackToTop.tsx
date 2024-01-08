@@ -7,7 +7,7 @@ export const BackToTop: FC = memo(() => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const handleToTopClick = () => {
-    scrollTo(0, 0);
+    window.scrollTo(0, 0);
   };
 
   return (

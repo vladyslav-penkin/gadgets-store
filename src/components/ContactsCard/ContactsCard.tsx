@@ -23,9 +23,7 @@ export const ContactsCard: FC<Props> = ({
         alt={name}
       />
       <figcaption className="contacts-card__description">
-        <h2 className="contacts-card__title">
-          {name}
-        </h2>
+        <h2 className="contacts-card__title">{name}</h2>
         <p className="contacts-card__position">{position}</p>
         <div className="contacts-card__icons">
           {contacts.map((contact: Contacts) => (

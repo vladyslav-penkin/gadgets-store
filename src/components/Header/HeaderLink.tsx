@@ -14,10 +14,9 @@ export const HeaderLink: FC<Props> = memo(({ to, title, className }) => {
     <NavLink
       to={to}
       className={({ isActive }) => classNames(
-        `${className}`, {
-          [`${className}--active`]: isActive,
-        }
-       )}
+        [className],
+        { [`${className}--active`]: isActive }
+      )}
     >
       {title}
     </NavLink>

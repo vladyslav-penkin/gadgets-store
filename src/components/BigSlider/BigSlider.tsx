@@ -2,30 +2,27 @@ import {
   FC,
   memo,
   useState,
-  useEffect,
 } from 'react';
-import '@components/BigSlider/BigSlider.scss';
+import './BigSlider.scss';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css'; 
 import 'slick-carousel/slick/slick-theme.css';
 import { useTheme } from '@hooks/useTheme';
 import { useResize } from '@hooks/useResize';
-import { BASE_URL, Banner, getBanners } from '@api/requests';
+import { useFetch } from '@hooks/useFetch';
 import { Loader } from '@components/Loader/Loader';
-import classNames from 'classnames';
+import { BASE_URL, Banner, getBanners } from '@api/requests';
 
 
 export const BigSlider: FC = memo(() => {
   const [banners, setBanners] = useState<Banner[]>([]);
-  const [isError, setError] = useState<boolean>(false);
   const isMobile = useResize();
+  const { isLoading } = useFetch(async () => {
+    const response = await getBanners();
+    setBanners(response);
+  }, () => {}, () => {}, []);
 
-  const {
-    themeIcons: {
-      arrowRightIcon,
-      arrowLeftIcon,
-    },
-  } = useTheme();
+  const { themeIcons: { arrowRightIcon, arrowLeftIcon } } = useTheme();
 
   const prevArrow = (
     <div>
@@ -68,27 +65,11 @@ export const BigSlider: FC = memo(() => {
     ],
   };
 
-  const loadBanners = async () => {
-    try {
-      setError(false);
-      const response = await getBanners();
-      setBanners(response);
-    } catch {
-      setError(true);
-    }
-  };
-
-  useEffect(() => {
-    loadBanners();
-  }, []);
-
   return (
     <div className="BigSlider">
-      {banners.length === 0
+      {isLoading
         ? (
-          <div className={classNames('BigSlider__skeleton', {
-            'BigSlider__skeleton--error': isError,
-          })}>
+          <div className="BigSlider__skeleton">
             <div className="BigSlider__loader">
               <Loader />
             </div>
@@ -99,9 +80,7 @@ export const BigSlider: FC = memo(() => {
               <div className="BigSlider__item">
                 <img
                   className="BigSlider__image"
-                  src={`${BASE_URL}/${
-                    isMobile ? banner.mobile : banner.desktop
-                  }`}
+                  src={`${BASE_URL}/${isMobile ? banner.mobile : banner.desktop}`}
                 />
               </div>
             ))}

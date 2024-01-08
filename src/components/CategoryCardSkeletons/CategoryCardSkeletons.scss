@@ -9,10 +9,6 @@
     margin-bottom: 24px;
     background-color: var(--surface1-color);
     @extend %skeleton;
-
-    &--error {
-      background-color: var(--red-color);
-    }
   }
 
   &-title {
@@ -21,11 +17,6 @@
     margin-top: 10px;
     background-color: var(--surface1-color);
     @extend %skeleton;
-    
-    &--error {
-      background-color: var(--red-color);
-    }
-
   }
 
   &-amount {
@@ -34,9 +25,5 @@
     margin-top: 10px;
     background-color: var(--surface1-color);
     @extend %skeleton;
-    
-    &--error {
-      background-color: var(--red-color);
-    }
   }
 }

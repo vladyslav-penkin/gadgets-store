@@ -22,12 +22,6 @@
     &:hover {
       box-shadow: inset 0 0 10px 0.1px var(--accent-color);
     }
-
-    &--error {
-      &:hover {
-        box-shadow: inset 0 0 10px 0.1px var(--red-color);
-      }
-    }
   }
 
   &__image {
@@ -35,10 +29,6 @@
     min-height: 129px;
     margin: 0 auto 24px;
     @extend %skeleton;
-
-    &--error {
-      background-color: var(--red-color);
-    }
 
     @include onTablet {
       min-width: 173px;
@@ -54,10 +44,6 @@
     min-height: 20px;
     @extend %skeleton;
 
-    &--error {
-      background-color: var(--red-color);
-    }
-
     &--1 {
       max-width: 100%;
       margin-bottom: 1px;
@@ -72,9 +58,6 @@
     @extend %skeleton;
     min-height: 30px;
     margin-bottom: 16px;
-    &--error {
-      background-color: var(--red-color);
-    }
   }
 
   &__properties {
@@ -92,9 +75,6 @@
     min-height: 15px;
     margin-bottom: 1px;
     @extend %skeleton;
-    &--error {
-      background-color: var(--red-color);
-    }
   }
 
   &__buttons {
@@ -107,17 +87,11 @@
     @extend %skeleton;
     height: 40px;
     width: 70%;
-    &--error {
-      background-color: var(--red-color);
-    }
   }
 
   &__button2 {
     @extend %skeleton;
     height: 40px;
     width: 30%;
-    &--error {
-      background-color: var(--red-color);
-    }
   }
 }

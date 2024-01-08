@@ -1,24 +1,15 @@
 import { FC, useEffect } from 'react';
 import './ContactsPage.scss';
+import { ContactsCard } from '@components/ContactsCard/ContactsCard';
+import { Container } from '@components/Container/Container';
 import linkedin from '@assets/icons/linkedin.svg';
 import github from '@assets/icons/github.svg';
 import email from '@assets/icons/email.svg';
-import { ContactsCard } from '@components/ContactsCard/ContactsCard';
-import { Container } from '@components/Container/Container';
 
 const teamContacts = [
-  { 
-    image: linkedin, 
-    link: 'https://www.linkedin.com/in/vladyslav-penkin-frontend/',
-  },
-  {
-    image: github,
-    link: 'https://github.com/vladyslav-penkin',
-  },
-  {
-    image: email,
-    link: 'mailto:vladyslav-penkin@gmail.com'
-  }
+  { image: linkedin,  link: 'https://www.linkedin.com/in/vladyslav-penkin-frontend/' },
+  { image: github, link: 'https://github.com/vladyslav-penkin' },
+  { image: email, link: 'mailto:vladyslav-penkin@gmail.com' },
 ];
 
 export const ContactsPage: FC = () => {

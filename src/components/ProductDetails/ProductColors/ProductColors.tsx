@@ -26,8 +26,7 @@ export const ProductColors: FC<Props> = ({
       <div className="colors__options">
         {colors.map((color: string) => {
           const currentColor = color.split(' ').join('-');
-          const pathname = `/${productType}/${[id, capacity, currentColor].join('-')}`
-            .toLowerCase();
+          const pathname = `/${productType}/${id}-${capacity}-${currentColor}`.toLowerCase();
 
           return (
             <ProductColor

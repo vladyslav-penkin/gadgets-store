@@ -7,34 +7,20 @@ import { Product } from '@/types/Product';
 type Props = {
   products: Product[];
   isLoading: boolean;
-  isError: boolean;
 };
 
-export const ProductsList: FC<Props> = ({
-  products,
-  isLoading,
-  isError,
-}) => {
-  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
+const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  return (
-    <section className="productsList">
-      {isLoading ? (
-        skeletons.map((product: number) => (
-          <ProductCardSkeleton
-            key={product}
-            isError={isError}
-          />
-        ))
-      ) : (
-        products.map((product: Product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-          />
-        ))
-      )}
-
-    </section>
-  );
-};
+export const ProductsList: FC<Props> = ({ products, isLoading }) => (
+  <section className="productsList">
+    {isLoading ? (
+      skeletons.map((product: number) => (
+        <ProductCardSkeleton key={product} />
+      ))
+    ) : (
+      products.map((product: Product) => (
+        <ProductCard key={product.id} product={product} />
+      ))
+    )}
+  </section>
+);

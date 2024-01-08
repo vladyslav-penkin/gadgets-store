@@ -18,9 +18,10 @@ export const PaginationBullets: FC<Props> = ({
       {visibleBullets.map((bullet: number) => (
         <button 
           key={bullet}
-          className={classNames('pagination__bullet', {
-            'pagination__bullet--active': bullet === currentPage,
-          })}
+          className={classNames(
+            'pagination__bullet',
+            { 'pagination__bullet--active': bullet === currentPage }
+          )}
           onClick={() => onClick(bullet)}
         >
           {bullet}

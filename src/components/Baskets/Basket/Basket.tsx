@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import './Basket.scss';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Product } from '@/types/Product';
 import { useLocaleStorageContext } from '@hooks/useLocaleStorageContext';
 import { useTheme } from '@hooks/useTheme';
 import { BasketButton } from '@components/Baskets/BasketButton/BasketButton';
 import { BASE_URL } from '@api/requests';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 type Props = {
   cartItem: Product;
@@ -82,9 +82,7 @@ export const Basket: FC<Props> = ({ cartItem }) => {
                 changeQuantity(cartItem.phoneId, 'decrease');
               }}
             />
-            <p className="basket__quantity">
-              {cartItem.quantity}
-            </p>
+            <p className="basket__quantity">{cartItem.quantity}</p>
             <BasketButton
               icon={plusIcon}
               isDisabled={(cartItem?.quantity || 1) >= 20}
@@ -93,9 +91,7 @@ export const Basket: FC<Props> = ({ cartItem }) => {
               }}
             />
           </div>
-          <p className="basket__price">
-            ${cartItem.price}
-          </p>
+          <p className="basket__price">${cartItem.price}</p>
         </div>
       </div>
     </motion.div>

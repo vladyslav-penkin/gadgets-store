@@ -8,10 +8,7 @@ type Props = {
 
 export const Logo: FC<Props> = ({ src }) => {
   return (
-    <Link
-      to="/"
-      className="header__logo logo"
-    >
+    <Link to="/" className="header__logo logo">
       <img
         src={src}
         alt="Logo"

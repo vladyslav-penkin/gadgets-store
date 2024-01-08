@@ -14,7 +14,7 @@ import {
   RequestParamsResult,
 } from '@api/requests';
 import { ProductType } from '@/types/ProductType';
-import { useFetch } from '@/hooks/useFetch';
+import { useFetch } from '@hooks/useFetch';
 
 export const ShopBy: FC = () => {
   const [phone, setPhone] = useState<RequestParamsResult>();
@@ -50,13 +50,13 @@ export const ShopBy: FC = () => {
     setter(response);
   };
 
-  const { isLoading, isError } = useFetch(async () => {
+  const { isLoading } = useFetch(async () => {
     await Promise.all([
       fetchData(ProductType.PHONES, setPhone),
       fetchData(ProductType.TABLETS, setTablet),
       fetchData(ProductType.ACCESSORIES, setAccess),
     ]);
-  }, []);
+  }, () => {}, () => {}, []);
 
   return (
     <article className="shop-by-category">
@@ -65,7 +65,7 @@ export const ShopBy: FC = () => {
       </h1>
       <section className="shop-by-category__categories">
         {isLoading && [1, 2, 3].map((skeleton: number) => (
-          <CategoryCardSkeletons key={skeleton} isError={isError} />
+          <CategoryCardSkeletons key={skeleton} />
         ))}
 
         {!isLoading && categories.map((category) => (

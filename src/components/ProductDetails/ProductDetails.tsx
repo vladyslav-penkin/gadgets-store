@@ -1,6 +1,5 @@
 import { FC, useMemo } from 'react';
 import './ProductDetails.scss';
-import { ProductType } from '@/types/ProductType';
 import { ProductColors } from '@components/ProductDetails/ProductColors/ProductColors';
 import { ProductSlider } from '@components/ProductSlider/ProductSlider';
 import { ProductCapacity } from '@components/ProductDetails/ProductCapacity/ProductCapacity';
@@ -12,6 +11,7 @@ import {
 } from '@hooks/useLocaleStorageContext';
 import { Product } from '@/types/Product';
 import { Phone } from '@/types/Phone';
+import { ProductType } from '@/types/ProductType';
 
 type Props = {
   product: Phone;
@@ -27,6 +27,7 @@ export const ProductDetails: FC<Props> = ({
   const {
     id,
     namespaceId,
+    color,
     colorsAvailable,
     capacityAvailable,
     capacity,
@@ -83,6 +84,8 @@ export const ProductDetails: FC<Props> = ({
         <ProductCapacity
           productType={productType}
           capacities={capacityAvailable}
+          namespaceId={namespaceId}
+          color={color}
         />
         <ProductPrice
           actualPrice={priceDiscount}

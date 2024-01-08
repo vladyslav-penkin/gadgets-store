@@ -1,15 +1,11 @@
-import {
-  FC,
-  useState,
-  useEffect,
-} from 'react';
+import { FC, useState } from 'react';
 import './HomePage.scss';
 import { BigSlider } from '@components/BigSlider/BigSlider';
-import { Product } from '@/types/Product';
-import { getNew, getHot } from '@api/requests';
 import { HomeSlider } from '@components/Slider/Slider';
 import { ShopBy } from '@components/ShopBy/ShopBy';
 import { Container } from '@components/Container/Container';
+import { Product } from '@/types/Product';
+import { getNew, getHot } from '@api/requests';
 import { useFetch } from '@hooks/useFetch';
 
 export const HomePage: FC = () => {
@@ -23,11 +19,7 @@ export const HomePage: FC = () => {
 
     setNewProducts(newProducts);
     setHotProducts(hotProducts);
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0 ,0);
-  }, []);
+  }, () => {}, () => window.scrollTo(0 ,0), []);
 
   return (
     <article className="HomePage">

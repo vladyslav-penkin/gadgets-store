@@ -1,9 +1,18 @@
 import { useState, useEffect } from 'react';
 
+type Callback = () => void;
+
+interface RequestResult {
+  isLoading: boolean;
+  isError: boolean;
+}
+
 export const useFetch = (
-  callback: () => void,
+  tryFunc: Callback,
+  catchFunc: Callback,
+  finallyFunc: Callback,
   dependencies: unknown[],
-) => {
+): RequestResult => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isError, setError] = useState<boolean>(false);
 
@@ -13,11 +22,13 @@ export const useFetch = (
         setLoading(true);
         setError(false);
   
-        await callback();
+        await tryFunc?.();
       } catch (error) {
+        await catchFunc?.();
         setError(true);
         console.error(error);
       } finally {
+        await finallyFunc?.();
         setLoading(false);
       }
     };

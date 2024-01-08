@@ -2,7 +2,6 @@ import {
   FC,
   memo,
   useState,
-  useEffect,
 } from 'react';
 import './ProductPage.scss';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -32,26 +31,21 @@ export const ProductPage: FC<Props> = memo(({ productType })  => {
   const [recommended, setRecommended] = useState<Product[]>([]);
   const { itemCard } = useParams();
 
-  const { isLoading, isError } = useFetch(async () => {
-    const [
-      detailedInfo,
-      recommendedInfo,
-    ] = await Promise.all([
-      getDetailedInfo(itemCard || ''),
-      getRecommendations(itemCard || '')
-    ]);
+  const { isLoading, isError } = useFetch(
+    async () => {
+      const [detailedInfo, recommendedInfo] = await Promise.all([
+        getDetailedInfo(itemCard || ''),
+        getRecommendations(itemCard || '')
+      ]);
 
-    setItem(detailedInfo);
-    setRecommended(recommendedInfo);
-  }, [itemCard]);
+      setItem(detailedInfo);
+      setRecommended(recommendedInfo);
+    }, 
+    () => navigate('*'),
+    () => window.scrollTo(0, 0),
+    [itemCard],
+  );
 
-  if (isError) {
-    navigate('*');
-  }
-
-  useEffect(() => {
-    scrollTo(0, 0);
-  }, [itemCard]);
 
   const linkLine = [
     { title: productType, link: `/${productType}` },

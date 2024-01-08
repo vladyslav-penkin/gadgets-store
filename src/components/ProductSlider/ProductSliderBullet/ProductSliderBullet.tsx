@@ -25,9 +25,7 @@ export const ProductSliderBullet: FC<Props> = ({
     >
       <div
         className="productSlider__bullet-image"
-        style={{
-          backgroundImage: `url(${BASE_URL}/${image})`,
-        }}
+        style={{ backgroundImage: `url(${BASE_URL}/${image})` }}
       ></div>
     </button>
   );

@@ -13,9 +13,7 @@ export const Checkout: FC = () => {
 
   return (
     <section className="checkout">
-      <p className="checkout__total-price">
-        ${totalPrice}
-      </p>
+      <p className="checkout__total-price">${totalPrice}</p>
       <p className="checkout__total-items">
         Total for {totalItems} items
       </p>

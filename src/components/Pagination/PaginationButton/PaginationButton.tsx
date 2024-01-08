@@ -17,27 +17,19 @@ export const PaginationButton: FC<Props> = ({
   currentPage,
   onClick,
 }) => {
-  const {
-    themeIcons: {
-      arrowLeftIcon,
-      arrowRightIcon,
-    },
-  } = useTheme();
+  const { themeIcons: { arrowLeftIcon, arrowRightIcon } } = useTheme();
   const isPrevious = type === PaginationButtonType.Previous;
-  const isDisabled = isPrevious
-    ? currentPage <= 1
-    : currentPage >= totalPages;
+  const isDisabled = isPrevious ? currentPage <= 1 : currentPage >= totalPages;
 
   return (
     <button 
-      className={classNames('pagination__nav-button', {
-        'pagination__nav-button--disabled': isDisabled,
-      })}
+      className={classNames(
+        'pagination__nav-button',
+        { 'pagination__nav-button--disabled': isDisabled }
+      )}
       onClick={onClick}
     >
-      <img
-        src={isPrevious ? arrowLeftIcon : arrowRightIcon}
-       />
+      <img src={isPrevious ? arrowLeftIcon : arrowRightIcon} />
     </button>
   );
 };
