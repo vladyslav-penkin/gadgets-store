@@ -17,6 +17,6 @@ export default defineConfig({
       '@contexts': path.resolve(__dirname, './src/contexts'),
     },
   },
-  base: 'https://vladyslav-penkin.github.io/gadgets-store/',
+  base: 'https://gadgets-store-m83z.onrender.com',
   plugins: [react()],
 });
