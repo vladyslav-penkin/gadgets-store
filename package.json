@@ -2,7 +2,7 @@
   "name": "gadgets-store",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://vladyslav-penkin.github.io/gadgets-store/",
+  "homepage": "https://gadgets-store-m83z.onrender.com",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
