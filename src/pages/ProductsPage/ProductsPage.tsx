@@ -1,21 +1,17 @@
-import {
-  FC,
-  useState,
-  useMemo,
-} from 'react';
+import { FC, useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './ProductsPage.scss';
 import { ProductType } from '@/types/ProductType';
 import { SortBy } from '@/types/SortBy';
 import { LinkLine } from '@components/LinkLine/LinkLine';
 import { Container } from '@components/Container/Container';
-import { getProducts, RequestParamsResult } from '@api/requests';
-import { DropDown } from '@components/DropDown/DropDown';
 import { ProductsList } from '@components/ProductsList/ProductsList';
 import { Search } from '@components/Search/Search';
 import { Pagination } from '@components/Pagination/Pagination';
+import { DropDownSection } from '@components/DropDownSection/DropDownSection';
 import { useFetch } from '@hooks/useFetch';
 import { updateSearchParams } from '@utils/searchHelper';
+import { getProducts, RequestParamsResult } from '@api/requests';
 
 type Props = {
   productType: ProductType;
@@ -28,17 +24,15 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
     models: 0,
   });
   const isHasProducts = productInfo.products.length > 0;
-
   const [searchParams, setSearchParams] = useSearchParams();
   const sort = searchParams.get('sort') || SortBy.NEW;
   const perPage = searchParams.get('perPage') || '8';
   const page = searchParams.get('page') || '1';
   const query = searchParams.get('query') || '';
-
-  const arrayOfItems = ['8', '16', '32', '64'];
   const sorts = useMemo(() => {
     return [SortBy.NAME, SortBy.NEW, SortBy.OLD, SortBy.LOW, SortBy.HIGHT];
   }, []);
+  const arrayOfItems = ['8', '16', '32', '64'];
 
   const { isLoading, isError } = useFetch(
     async () => {
@@ -116,30 +110,23 @@ export const ProductsPage: FC<Props> = ({ productType }) => {
             searchQuery={query}
             onChange={onQueryChange}
           />
-          <section className="productsPage__dropDown">
-            <div className="productsPage__dropDown-container">
-              <p className="productsPage__dropDown-title">
-                Sort By
-              </p>
-              <DropDown
-                variables={sorts}
-                searchParam={sort}
-                onChange={onSortChange}
-                defaultValue={1}
-              />
-            </div>
-            <div className="productsPage__dropDown-container">
-              <p className="productsPage__dropDown-title">
-                Items on page
-              </p>
-              <DropDown
-                variables={arrayOfItems}
-                searchParam={perPage}
-                onChange={onPerPageChange}
-                defaultValue={0}
-              />
-            </div>
-          </section>
+
+          <div className="productsPage__dropDown">
+            <DropDownSection
+              title="Sort By"
+              variables={sorts}
+              searchParam={sort}
+              onChange={onSortChange}
+              defaultValue={1}
+            />
+            <DropDownSection
+              title="Items on page"
+              variables={arrayOfItems}
+              searchParam={perPage}
+              onChange={onPerPageChange}
+              defaultValue={0}
+            />
+          </div>
         </div>
 
         {isError ? (

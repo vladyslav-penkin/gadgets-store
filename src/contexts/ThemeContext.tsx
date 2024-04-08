@@ -4,9 +4,7 @@ import {
   useMemo,
   useCallback,
 } from 'react';
-import {
-  useLocaleStorage,
-} from '@hooks/useLocaleStorage';
+import { useLocaleStorage } from '@hooks/useLocaleStorage';
 import logoDarkIcon from '@assets/icons/logoDark.svg';
 import logoLightIcon from '@assets/icons/logoLight.svg';
 import favoritesDarkIcon from '@assets/icons/favouritesDark.svg';
@@ -118,7 +116,7 @@ export const ThemeProvider: FC<Props> = ({ children }) => {
   const toggleTheme = useCallback(() => {
     setTheme(
       isDarkTheme
-         ? 'light'
+        ? 'light'
         : 'dark'
     )
   }, [isDarkTheme, setTheme]);

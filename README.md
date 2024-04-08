@@ -23,4 +23,4 @@ Users can add some products to their wishlist.
 
 ## Preview
 
-[**🔗Click here!**](https://vladyslav-penkin.github.io/gadgets-store/#/)
+[**🔗Click here!**](https://gadgets-store-m83z.onrender.com)

@@ -5,11 +5,7 @@ export const useResize = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmall(
-        window.innerWidth < 640
-          ? true
-          : false
-        )
+      setIsSmall(window.innerWidth < 640 ? true : false)
     };
 
     window.addEventListener('resize', handleResize);

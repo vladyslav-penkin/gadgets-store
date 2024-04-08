@@ -24,20 +24,5 @@
     display: flex;
     gap: 16px;
     margin-bottom: 24px;
-
-    &-container {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    &-title {
-      max-width: max-content;
-      color: var(--secondary-color);
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 15px;
-      margin-bottom: 4px;
-    }
   }
 }

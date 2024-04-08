@@ -2,13 +2,7 @@ import { FC } from 'react';
 import './App.scss';
 import '@styles/reset.scss';
 import '@styles/normalize.scss';
-import {
-  Routes,
-  Route,
-  Navigate,
-  Outlet,
-} from 'react-router-dom';
-import { useTheme } from '@hooks/useTheme';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { HomePage } from '@pages/HomePage/HomePage';
 import { ProductsPage } from '@pages/ProductsPage/ProductsPage';
 import { ProductPage } from '@pages/ProductPage/ProductPage';
@@ -18,6 +12,7 @@ import { CartPage } from '@pages/CartPage/CartPage';
 import { NotFoundPage } from '@pages/NotFoundPage/NotFoundPage';
 import { Header } from '@components/Header/Header';
 import { Footer } from '@components/Footer/Footer';
+import { useTheme } from '@hooks/useTheme';
 import { ProductType } from '@/types/ProductType';
 
 const App: FC = () => {

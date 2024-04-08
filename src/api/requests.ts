@@ -46,10 +46,6 @@ export const getProducts = async(
   return data;
 };
 
-export const getMinMax = (category: ProductType): Promise<number[]> => {
-  return get(`${BASE_URL}/products/minmax?category=${category}`);
-};
-
 export const getNew = (limit?: number): Promise<Product[]> => {
   // default limit is 12
   return get<Product[]>(
@@ -66,11 +62,11 @@ export const getHot = (limit?: number): Promise<Product[]> => {
 
 export const getDetailedInfo = (id: string): Promise<Phone> => {
   // apple-iphone-....
-  return get(`${BASE_URL}/products/${id}`);
+  return get<Phone>(`${BASE_URL}/products/${id}`);
 };
 
 export const getRecommendations = (id: string): Promise<Product[]> => {
-  return get(`${BASE_URL}/products/${id}/recommended`);
+  return get<Product[]>(`${BASE_URL}/products/${id}/recommended`);
 };
 
 export type Banner = {
@@ -79,5 +75,5 @@ export type Banner = {
 }
 
 export const getBanners = (): Promise<Banner[]> => {
-  return get(`${BASE_URL}/images/banners`);
+  return get<Banner[]>(`${BASE_URL}/images/banners`);
 };

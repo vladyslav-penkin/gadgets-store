@@ -10,16 +10,16 @@ import { Product } from '@/types/Product';
 import { Phone } from '@/types/Phone';
 import { Container } from '@components/Container/Container';
 import { LinkLine } from '@components/LinkLine/LinkLine';
-import { getDetailedInfo, getRecommendations } from '@api/requests';
 import { BackToButton } from '@components/BackToButton/BackToButton';
 import { ProductDetails } from '@components/ProductDetails/ProductDetails';
-import { getShortInfo } from '@/helpers/getShortInfo';
 import { ProductDescription } from '@components/ProductDescription/ProductDescription';
 import { ProductAbout } from '@components/ProductDescription/ProductAbout/ProductAbout';
 import { ProductTechSpecs } from '@components/ProductDescription/ProductTechSpecs/ProductTechSpecs';
 import { HomeSlider } from '@components/Slider/Slider';
 import { ProductPageSkeleton } from '@pages/ProductPageSkeleton/ProductPageSkeleton';
 import { useFetch } from '@hooks/useFetch';
+import { getDetailedInfo, getRecommendations } from '@api/requests';
+import { getShortInfo } from '@/helpers/getShortInfo';
 
 type Props = {
   productType: ProductType;
@@ -45,7 +45,6 @@ export const ProductPage: FC<Props> = memo(({ productType })  => {
     () => window.scrollTo(0, 0),
     [itemCard],
   );
-
 
   const linkLine = [
     { title: productType, link: `/${productType}` },
@@ -81,14 +80,11 @@ export const ProductPage: FC<Props> = memo(({ productType })  => {
 
           <div className="product__productDescription">
             <ProductDescription title="About">
-              <ProductAbout
-                description={item.description}
-              />
+              <ProductAbout description={item.description} />
             </ProductDescription>
+
             <ProductDescription title="TechSpecs">
-              <ProductTechSpecs
-                product={item}
-              />
+              <ProductTechSpecs product={item} />
             </ProductDescription>
           </div>
 
@@ -97,7 +93,7 @@ export const ProductPage: FC<Props> = memo(({ productType })  => {
             title={'You may also like'}
             isLoading={isLoading}
             isError={isError}
-           />
+          />
         </>
        )}
     </Container>
